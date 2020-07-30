@@ -1,0 +1,33 @@
+/* Custom Stylesheet */
+
+.avatar {
+    object-fit: cover; /* Do not scale the image */
+    object-position: center; /* Center the image within the element */
+  }
+
+.bg-purple {
+    background-color: #802e9d;
+}
+
+.form-control,
+.btn,
+.card,
+.custom-select,
+.modal-content {
+    border-radius: .5rem;
+}
+
+.card {
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.card-header {
+    background-color: #f9f9f9;
+    border-bottom: .2px solid #dde1e6;
+    border-radius: .5rem .5rem 0 0 !important;
+}
+
+a {
+    text-decoration: none !important;
+}
