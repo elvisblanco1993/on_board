@@ -6,16 +6,16 @@
                 <img
                     src="{{ url('/storage/images/logo.png') }}"
                     height="30"
-                    loading="lazy">
-                {{-- {{ config('app.name') }} --}}
+                    loading="lazy"
+                    alt="{{ config('app.name') }}">
             </a>
         @else
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img
                     src="{{ url('/storage/images/logo.png') }}"
                     height="30"
-                    loading="lazy">
-                {{-- {{ config('app.name') }} --}}
+                    loading="lazy"
+                    alt="{{ config('app.name') }}">
             </a>
         @endauth
 
