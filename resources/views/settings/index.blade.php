@@ -41,10 +41,10 @@
 
                                 <ul class="nav flex-column nav-pills nav-fill" id="pills-tab" role="tablist">
                                     <li class="nav-item" role="presentation">
-                                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Institution</a>
+                                        <a class="nav-link active" id="pills-company-tab" data-toggle="pill" href="#pills-company" role="tab" aria-controls="pills-company" aria-selected="true">Institution</a>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Front Page</a>
+                                        <a class="nav-link" id="pills-fpage-tab" data-toggle="pill" href="#pills-fpage" role="tab" aria-controls="pills-fpage" aria-selected="false">Front Page</a>
                                     </li>
                                 </ul>
 
@@ -53,10 +53,10 @@
                             <div class="col-md-10">
 
                                 <div class="tab-content" id="pills-tabContent">
-                                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                    <div class="tab-pane fade show active" id="pills-company" role="tabpanel" aria-labelledby="pills-company-tab">
                                         @include('settings.partials.__company-info')
                                     </div>
-                                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                    <div class="tab-pane fade" id="pills-fpage" role="tabpanel" aria-labelledby="pills-fpage-tab">
                                         @include('settings.partials.__front-page')
                                     </div>
                                 </div>

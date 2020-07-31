@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $frontPageContents = Settings::get()[0]->frontpage;
+        $frontPageContents = Settings::get()[0]->frontpage ?? null;
 
         $frontPage = view('front', [
             'frontPageContents' => $frontPageContents,

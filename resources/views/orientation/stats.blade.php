@@ -18,13 +18,15 @@
                                 Statistics
                             </span>
                         </span>
-                        <form action="{{ url('/orientation/' . $students[0]->orientations[0]->id . '/exportStats') }}" method="post">
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="text-primary btn m-0 py-0" title="Download .xslx report">
-                                <i class="fas fa-file-excel"></i>
-                            </button>
-                        </form>
+                        @if ( count($students) > 0 )
+                            <form action="{{ url('/orientation/' . $students[0]->orientations[0]->id . '/exportStats') }}" method="post">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="text-primary btn m-0 py-0" title="Download .xslx report">
+                                    <i class="fas fa-file-excel"></i>
+                                </button>
+                            </form>
+                        @endif
                     </div>
                     <div class="card-body">
 

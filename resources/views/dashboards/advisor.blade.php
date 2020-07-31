@@ -4,7 +4,9 @@
         <div class="container">
             <div class="row my-4 ">
 
-                <div class="col-md-12">
+                @include('layouts.sidebar')
+
+                <div class="col-md-10">
 
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
