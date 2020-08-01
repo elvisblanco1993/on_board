@@ -34,5 +34,11 @@ class TypesTableSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s")
          ]);
+         DB::table('types')->insert([
+            'name' => 'docusign',
+            'label' => 'Docusign',
+            'created_at' => date("Y-m-d H:i:s"),
+            'updated_at' => date("Y-m-d H:i:s")
+         ]);
     }
 }

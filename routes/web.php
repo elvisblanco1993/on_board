@@ -134,6 +134,11 @@ Route::get('/section/{section}/view', 'SectionController@show')->name('section.s
 Route::get('/section/create/{orientation_id}', 'SectionController@create')->name('article.create')->middleware('auth');
 
 /**
+ * Create a Docusign Document to Sign
+ */
+Route::get('/docusign', 'DocuSignController@index');
+
+/**
  *
  * USERS ROUTES
  *

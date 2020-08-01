@@ -70,6 +70,9 @@
                                 @if (request('content-type') === '3')
                                     @include('section.create.assessment')
                                 @endif
+                                @if (request('content-type') === '4')
+                                    @include('section.create.docusign')
+                                @endif
                             </div>
 
                         </div>
