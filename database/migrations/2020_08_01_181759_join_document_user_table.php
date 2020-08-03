@@ -17,6 +17,7 @@ class JoinDocumentUserTable extends Migration
             $table->id();
             $table->unsignedBigInteger('document_id');
             $table->unsignedBigInteger('user_id');
+            $table->timestamp('signed_at')->nullable();
             $table->timestamps();
 
             $table->unique('document_id', 'user_id');
