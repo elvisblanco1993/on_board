@@ -1,7 +1,5 @@
 #!/bin/sh
 sudo apt install php libapache2-mod-php php-mbstring php-xmlrpc php-soap php-gd php-xml php-cli php-zip php-bcmath php-tokenizer php-json php-pear apache2 composer npm mysql-server mysql-client php-mysql phpmyadmin supervisor redis php-redis;
-sudo chgrp -R www-data . ;
-sudo chmod -R 775 ./storage ;
 
 sudo gedit /etc/apache2/apache2.conf
 sudo gedit /etc/apache2/sites-enabled/000-default.conf
@@ -17,6 +15,12 @@ sudo gedit /etc/apache2/sites-enabled/000-default.conf
 #    ErrorLog ${APACHE_LOG_DIR}/error.log
 #    CustomLog ${APACHE_LOG_DIR}/access.log combined
 # </VirtualHost>
+
+sudo chgrp -R www-data .
+sudo chown -R $USER:www-data storage;
+sudo chown -R $USER:www-data bootstrap/cache;
+chmod -R 775 ./storage;
+chmod -R 775 bootstrap/cache;
 
 sudo a2enmod rewrite;
 sudo systemctl restart apache2;
