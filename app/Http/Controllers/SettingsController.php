@@ -39,6 +39,50 @@ class SettingsController extends Controller
     }
 
     /**
+     * Show company settings
+     */
+    public function showCompanySettings()
+    {
+        $user = User::find(Auth::user()->id);
+        $role = $user->getRoles();
+        $settings = Settings::first();
+
+        if ($role->contains('admin')) {
+
+            return view('settings.company', [
+                'user' => $user,
+                'role' => $role,
+                'settings' => $settings
+            ]);
+
+        } else {
+            return redirect('/');
+        }
+    }
+
+    /**
+     * Show front page settings
+     */
+    public function showFrontPageSettings()
+    {
+        $user = User::find(Auth::user()->id);
+        $role = $user->getRoles();
+        $settings = Settings::first();
+
+        if ($role->contains('admin')) {
+
+            return view('settings.frontpage', [
+                'user' => $user,
+                'role' => $role,
+                'settings' => $settings
+            ]);
+
+        } else {
+            return redirect('/');
+        }
+    }
+
+    /**
      * Update the company details
      * @return string
      */
@@ -47,6 +91,7 @@ class SettingsController extends Controller
         $settings = Settings::first();
         // Verify each separate item.
         // Don't use built in validate(), cause all input is not required.
+
         if (request('company_name')) {
             $settings->school_name = request('company_name');
         }
@@ -65,7 +110,7 @@ class SettingsController extends Controller
 
         $settings->update();
 
-        return redirect()->route('settings')->with('message', 'Company details were successfully updated.');
+        return redirect()->route('company')->with('message', 'Company details were successfully updated.');
 
     }
 
@@ -100,7 +145,7 @@ class SettingsController extends Controller
 
         $settings->update();
 
-        return redirect()->route('settings')->with('message', 'Logo successfully updated.');
+        return redirect()->route('company')->with('message', 'Logo successfully updated.');
 
 
     }
@@ -114,7 +159,7 @@ class SettingsController extends Controller
         $settings->frontpage = request('frontpage');
         $settings->update();
 
-        return redirect()->route('settings')->with('message', 'Front page contents were successfully uploaded.');
+        return redirect()->route('frontpage')->with('message', 'Front page contents were successfully uploaded.');
     }
 
 }

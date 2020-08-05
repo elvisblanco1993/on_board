@@ -3,7 +3,7 @@
 @section('content')
 
     @if ($role->contains('admin'))
-        <div class="container">
+        <div class="container-fluid">
             <div class="row mt-4">
                 @include('layouts.sidebar')
 
@@ -45,7 +45,7 @@
                                     @enderror
                                 </div>
                                 <div class="float-right">
-                                    <a class="btn btn-light mr-2" href="{{route('dashboard')}}">Discard</a>
+                                    <a class="btn btn-light mr-2" href="{{route('documents')}}">Discard</a>
                                     <button class="btn btn-primary shadow-sm" type="submit"><i class="fas fa-save mr-1"></i>Save</button>
                                 </div>
                             </form>

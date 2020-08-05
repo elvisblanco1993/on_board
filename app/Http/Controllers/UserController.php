@@ -66,7 +66,9 @@ class UserController extends Controller
 
             $orientations = $user->orientations;
             $sections = $user->sections;
+            $documents = null;
             $first = DB::table('section_user')->where('user_id', $user->id)->first();
+
 
             // Has Orientation?
             if ( !empty( $orientations->toArray() ) ) {
@@ -75,6 +77,10 @@ class UserController extends Controller
                 $toSync = Orientation::find( $orientations->first()->id )->sections;
 
                 $tempUsr->sections()->sync($toSync, false);
+
+                // Assign documents directly from the orientation
+                $tempUsr->documents()->sync(Orientation::find( $orientations->first()->id )->documents, false);
+                $documents = User::find(Auth::user()->id)->documents;
 
                 // Let's re-check for sections now
                 $first = DB::table('section_user')->where('user_id', $user->id)->first();
@@ -97,7 +103,8 @@ class UserController extends Controller
                             'role' => $role,
                             'completed' => true,
                             'orientationName' => $orientationName,
-                            'orientationBg' => $orientationBg
+                            'orientationBg' => $orientationBg,
+                            'documents' => $documents,
                         ]);
 
                     } else {
@@ -109,7 +116,8 @@ class UserController extends Controller
                             return view('student.show', [
                                 'user' => $user,
                                 'role' => $role,
-                                'start_at' => $first->section_id
+                                'start_at' => $first->section_id,
+                                'documents' => $documents,
                             ]);
 
                         } else {
@@ -117,7 +125,8 @@ class UserController extends Controller
                             return view('student.show', [
                                 'user' => $user,
                                 'role' => $role,
-                                'start_at' => $start_at->section_id
+                                'start_at' => $start_at->section_id,
+                                'documents' => $documents,
                             ]);
                         }
                     }
@@ -131,7 +140,8 @@ class UserController extends Controller
                         return view('student.show', [
                             'user' => $user,
                             'role' => $role,
-                            'start_at' => $first->section_id
+                            'start_at' => $first->section_id,
+                            'documents' => $documents,
                         ]);
                     } else {
                         // Redirect to index and let the student know the orientation is empty.
@@ -139,7 +149,8 @@ class UserController extends Controller
                             'user' => $user,
                             'role' => $role,
                             'completed' => false,
-                            'hasSections' => false
+                            'hasSections' => false,
+                            'documents' => $documents,
                         ]);
                     }
                 }
@@ -147,14 +158,16 @@ class UserController extends Controller
                 return view('student.index', [
                     'user' => $user,
                     'role' => $role,
-                    'completed' => false
+                    'completed' => false,
+                    'documents' => $documents,
                 ]);
 
             } else {
                 return view('student.index', [
                     'user' => $user,
                     'role' => $role,
-                    'completed' => false
+                    'completed' => false,
+                    'documents' => $documents,
                 ]);
             }
         }

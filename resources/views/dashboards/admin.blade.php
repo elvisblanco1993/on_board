@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @if ($role->contains('admin'))
-        <div class="container">
+        <div class="container-fluid">
             <div class="row my-4 ">
 
                 @include('layouts.sidebar')

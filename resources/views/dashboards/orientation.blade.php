@@ -2,7 +2,7 @@
 
 @section('content')
     @if ($role->contains('admin') || $role->contains('advisor'))
-        <div class="container">
+        <div class="container-fluid">
             <div class="row my-4 d-flex justify-content-center">
                 @include('layouts.sidebar')
 

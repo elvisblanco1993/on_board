@@ -189,6 +189,9 @@ Route::put('settings/store/logo', 'SettingsController@logoUpdate')->name('logoUp
 Route::put('settings/store/frontpage', 'SettingsController@saveFrontPageCode');
 
 Route::get('settings', 'SettingsController@index')->name('settings')->middleware('auth');
+Route::get('settings/company', 'SettingsController@showCompanySettings')->name('company')->middleware('auth');
+Route::get('settings/frontpage', 'SettingsController@showFrontPageSettings')->name('frontpage')->middleware('auth');
+
 
 
 /**
@@ -243,6 +246,18 @@ Route::post('documents', 'DocumentController@store')->middleware('auth');
  * View a document (pdf)
  */
 Route::get('documents/{document}', 'DocumentController@view')->middleware('auth');
+Route::get('document/view/{document}', 'DocumentController@viewSigned')->middleware('auth');
+
+
+/**
+ * Attach a document to one or multiple orientations
+ */
+Route::put('documents/{document}/attach', 'DocumentController@attachToOrientation')->middleware('auth');
+
+/**
+ * Sign a document
+ */
+Route::put('documents/{document}/sign', 'DocumentController@sign')->middleware('auth');
 
 
 

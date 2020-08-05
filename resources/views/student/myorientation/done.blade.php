@@ -10,11 +10,8 @@
 </style>
 <div class="container">
     <div class="row my-4 d-flex justify-content-center">
-
         <div class="card">
             <div class="card-body">
-
-
                 <div class="media">
                     <img src="{{ url('/storage/images/logo.png') }}" alt="{{ config('app.name') }}" class="align-self-center mr-3" style="max-width: 20%">
                     <div class="media-body align-self-center">
@@ -27,6 +24,10 @@
                 </div>
             </div>
         </div>
+
+        @if ( ! is_null ( $documents ) )
+            @include('student.documents.index')
+        @endif
 
     </div>
 </div>

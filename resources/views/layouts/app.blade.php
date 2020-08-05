@@ -33,15 +33,5 @@
     <nav class="navbar fixed-bottom py-0 justify-content-center">
         <small class="text-muted">Powered by {{ config('app.name') }}</small>
     </nav>
-
-    {{-- Menu Toggle Script --}}
-    <script>
-        document.querySelector("#menu-toggle").addEventListener("click", function (e) {
-            e.preventDefault();
-
-            document.querySelector("#wrapper").classList.toggle("toggled");
-        });
-
-    </script>
 </body>
 </html>

@@ -5,7 +5,7 @@
     @forelse ($user->orientations as $orientation)
         {{-- Student Dashboard --}}
         <div
-            class="container-fluid m-0"
+            class="container"
             {{-- Load background image loaded by administrator --}}
             style="background-image: url('storage/images/{{ $orientation->background }}'); background-size: cover; background-repeat: no-repeat;">
 

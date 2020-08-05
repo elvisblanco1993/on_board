@@ -15,6 +15,8 @@
                 </div>
             </div>
 
+            @include('student.documents.index')
+
         @endif
 
         {{-- An orientation was assigned, but is empty --}}
