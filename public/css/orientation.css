@@ -17,8 +17,9 @@ body {
 .btn,
 .card,
 .custom-select,
-.modal-content {
-    border-radius: .5rem;
+.modal-content,
+.alert {
+    border-radius: .8rem !important;
 }
 
 .card {
