@@ -2,8 +2,7 @@
 /public/hot
 /public/storage
 /storage/*.key
-/storage/certificates/tcpdf.crt
-!/storage/certificates/*
+/storage/certificates/*
 /vendor
 .env
 .env.backup
