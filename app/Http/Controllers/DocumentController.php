@@ -88,7 +88,7 @@ class DocumentController extends Controller
         /**
      * View a document
      */
-    public function viewSigned(Document $document)
+    public function viewSigned(Document $document, User $user)
     {
 
         TCPDF::setFooterCallback(function($pdf) {
@@ -102,7 +102,6 @@ class DocumentController extends Controller
         });
 
         $documentName = $document->name;
-        $user = User::find(Auth::user(request('user'))->id);
         $signedAt = DB::table('document_user')->where('document_id', $document->id)->where('user_id', $user->id)->get()[0]->signed_at;
 
         $certificate = 'file://' . base_path() . config('services.pdf.certificate') ?? null;

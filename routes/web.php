@@ -139,6 +139,14 @@ Route::get('section/create/{orientation_id}', 'SectionController@create')->name(
  *
  */
 
+ /**
+ * Invite users
+ */
+Route::get('users/invite', 'UserController@invite')->middleware('auth');
+
+/**
+ * Process the invitation
+ */
 Route::post('users', 'UserController@processInvites')->middleware('auth');
 
 /**
@@ -150,11 +158,6 @@ Route::get('users', 'BackendUserController@index')->name('users')->middleware('a
  * View single user details
  */
 Route::get('users/{user}', 'BackendUserController@view')->name('user')->middleware('auth');
-
-/**
- * Invite users
- */
-Route::get('users/invite', 'UserController@invite')->middleware('auth');
 
 /**
  * Re-send invitation
@@ -251,7 +254,11 @@ Route::post('documents', 'DocumentController@store')->middleware('auth');
  * View a document (pdf)
  */
 Route::get('documents/{document}', 'DocumentController@view')->middleware('auth');
-Route::get('document/view/{document}', 'DocumentController@viewSigned')->middleware('auth');
+
+/**
+ * View a signed document
+ */
+Route::get('document/view/{document}/signed-by/{user}', 'DocumentController@viewSigned')->middleware('auth');
 
 
 /**

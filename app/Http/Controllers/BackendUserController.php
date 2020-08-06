@@ -19,13 +19,12 @@ class BackendUserController extends Controller
     {
         $role = User::find(Auth::user()->id)->getRoles();
         $users = User::paginate('10');
-        $appRoles = Role::get();
         $pendingInvites = Invite::all();
 
         return view('users.index', [
             'role' => $role,
             'users' => $users,
-            'appRoles' => $appRoles,
+            'appRoles' => Role::get(),
             'pendingInvites' => $pendingInvites
         ]);
     }
@@ -64,6 +63,7 @@ class BackendUserController extends Controller
             'user' => $user,
             'orientations' => $orientations,
             'documents' => $documents,
+            'appRoles' => Role::get(),
             'role' => User::find(Auth::user()->id)->getRoles(),
         ]);
     }

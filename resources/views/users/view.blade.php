@@ -30,6 +30,9 @@
                                     Back
                                 </span>
                             </span>
+                            <a role="button" class="btn btn-sm btn-light" data-toggle="modal" data-target="#editUser{{ $user->id }}">
+                                <i class="fas fa-user-edit"></i> Edit
+                            </a>
                         </div>
                         <div class="card-body">
 
@@ -42,8 +45,9 @@
                                                 <div class="media-body align-self-center">
                                                     <h4>{{$user->name}}</h4>
                                                     <p class="mb-0"><i class="fas fa-envelope text-secondary mr-2"></i> {{$user->email}}</p>
-                                                    <p class="text-capitalize"> <i class="fas fa-user-tag text-secondary mr-2"></i>{{$user->roles[0]->label}}</p>
-                                                    <p></p>
+                                                    <p class="text-capitalize mb-0">
+                                                        <i class="fas fa-user-tag text-secondary mr-2"></i>{{$user->roles[0]->label}}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -104,7 +108,7 @@
                                                                         <a
                                                                             class="text-danger"
                                                                             title="View / download signed document."
-                                                                            href="{{ url('#') }}">
+                                                                            href="{{ url('document/view/' . $document->id . '/signed-by/' . $user->id) }}">
                                                                             <i class="fas fa-file-pdf"></i>
                                                                         </a>
                                                                     @else
@@ -124,6 +128,56 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
+
+        {{-- Edit user --}}
+        <div class="modal fade" id="editUser{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="editUser" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="editUser">Editing: {{ $user->name }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <form action="/user/{{ $user->id }}/update" method="POST">
+                        <div class="modal-body">
+                            @csrf
+                            @method('PUT')
+                            <div class="form-group">
+                              <label for="name">Name</label>
+                              <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                class="form-control"
+                                placeholder="John Smith"
+                                value="{{ $user->name }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="roles">Role</label>
+                                <select name="role" class="custom-select text-capitalize">
+                                    @foreach ($appRoles as $appRole)
+                                    <option
+                                        class="text-capitalize"
+                                        value="{{ $appRole->id }}"
+                                        @if ( !empty($user->roles[0]->id) )
+                                            @if ($user->roles[0]->id == $appRole->id)
+                                                selected
+                                            @endif
+                                        @endif
+                                        >{{ $appRole->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Dismiss</button>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-1"></i>Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

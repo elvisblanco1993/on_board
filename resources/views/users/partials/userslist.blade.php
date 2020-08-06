@@ -9,18 +9,22 @@
         </a>
     </div>
 
-
     <div class="card-body">
 
         <div class="row">
 
             @foreach ($users as $user)
-                <div class="col-md-3">
+                <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
                     <a href="{{ url('/users/' . $user->id) }}" class="custom-card">
                         <div class="card user-card">
                             <div class="card-body">
                                 <div class="media">
-                                    <img src="{{ url('/storage/images/' . $user->avatar) }}" alt="{{$user->name}}" class="avatar rounded-pill mr-3" width="96" height="96">
+                                    <img
+                                        src="{{ url('/storage/images/' . $user->avatar) }}"
+                                        alt="{{$user->name}}"
+                                        class="avatar rounded mr-3"
+                                        width="96"
+                                        height="96">
                                     <div class="media-body align-self-center">
                                         <h5 class="mt-0 text-dark">{{$user->name}}</h5>
                                         <p class="text-muted mb-0">{{$user->email}}</p>
@@ -33,76 +37,6 @@
             @endforeach
 
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <table class="table table-hover table-borderless">
-            <tbody>
-                @foreach ($users as $user)
-                    <div class="modal fade" id="userDetails{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="userDetails" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="userDetails">Editing: {{ $user->name }}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                </div>
-                                <form action="/user/{{ $user->id }}/update" method="POST">
-                                    <div class="modal-body">
-                                        @csrf
-                                        @method('PUT')
-                                        <div class="form-group">
-                                          <label for="name">Name</label>
-                                          <input
-                                            type="text"
-                                            name="name"
-                                            id="name"
-                                            class="form-control"
-                                            placeholder="John Smith"
-                                            value="{{ $user->name }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="roles">Role</label>
-                                            <select name="role" class="custom-select text-capitalize">
-                                                @foreach ($appRoles as $appRole)
-                                                <option
-                                                    class="text-capitalize"
-                                                    value="{{ $appRole->id }}"
-                                                    @if ( !empty($user->roles[0]->id) )
-                                                        @if ($user->roles[0]->id == $appRole->id)
-                                                            selected
-                                                        @endif
-                                                    @endif
-                                                    >{{ $appRole->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-light" data-dismiss="modal">Dismiss</button>
-                                        <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-1"></i>Save</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </tbody>
-        </table>
 
         {{-- Pending invitations --}}
         @if (count($pendingInvites) > 0)

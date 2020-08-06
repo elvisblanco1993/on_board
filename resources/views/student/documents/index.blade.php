@@ -37,7 +37,7 @@
                                 <i class="fas fa-check-circle"></i>
                                 {{ $document->pivot->signed_at }}
                             </span>
-                            <a href="/document/view/{{$document->id}}/" target="_blank" title="Download a copy of this signed document." class="ml-2">
+                            <a href="{{ url( '/document/view/' . $document->id . '/signed-by/' . $user->id ) }}" target="_blank" title="Download a copy of this signed document." class="ml-2">
                                 <i class="fas fa-file-pdf text-danger"></i>
                             </a>
                         @endif
