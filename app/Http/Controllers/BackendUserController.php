@@ -51,4 +51,20 @@ class BackendUserController extends Controller
         }
         return redirect(route('users'))->with('errMessage', 'Unauthorized action recorded.');
     }
+
+    /**
+     * View single user details
+     */
+    public function view(User $user)
+    {
+        $orientations = $user->orientations ?? null;
+        $documents = $user->documents ?? null;
+
+        return view('users.view', [
+            'user' => $user,
+            'orientations' => $orientations,
+            'documents' => $documents,
+            'role' => User::find(Auth::user()->id)->getRoles(),
+        ]);
+    }
 }

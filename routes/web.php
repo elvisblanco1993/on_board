@@ -147,6 +147,11 @@ Route::post('users', 'UserController@processInvites')->middleware('auth');
 Route::get('users', 'BackendUserController@index')->name('users')->middleware('auth');
 
 /**
+ * View single user details
+ */
+Route::get('users/{user}', 'BackendUserController@view')->name('user')->middleware('auth');
+
+/**
  * Invite users
  */
 Route::get('users/invite', 'UserController@invite')->middleware('auth');

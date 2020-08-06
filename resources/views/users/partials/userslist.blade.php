@@ -12,27 +12,48 @@
 
     <div class="card-body">
 
+        <div class="row">
+
+            @foreach ($users as $user)
+                <div class="col-md-3">
+                    <a href="{{ url('/users/' . $user->id) }}" class="custom-card">
+                        <div class="card user-card">
+                            <div class="card-body">
+                                <div class="media">
+                                    <img src="{{ url('/storage/images/' . $user->avatar) }}" alt="{{$user->name}}" class="avatar rounded-pill mr-3" width="96" height="96">
+                                    <div class="media-body align-self-center">
+                                        <h5 class="mt-0 text-dark">{{$user->name}}</h5>
+                                        <p class="text-muted mb-0">{{$user->email}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <table class="table table-hover table-borderless">
             <tbody>
                 @foreach ($users as $user)
-                    <tr>
-                        <td>
-                            <div class="media">
-                                <div class="media-body">
-                                    <p class="mb-0">{{ $user->name }}</p>
-                                    <span class="text-muted">
-                                        <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
-                                    </span>
-                                </div>
-                            </div>
-                        </td>
-                        <td align="right" class="align-middle">
-                            <a type="button" class="mx-1 p-1 text-secondary" data-toggle="modal" data-target="#userDetails{{ $user->id }}"><i class="fas fa-user-cog"></i></a>
-                        </td>
-                    </tr>
-
                     <div class="modal fade" id="userDetails{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="userDetails" aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
                                 <h5 class="modal-title" id="userDetails">Editing: {{ $user->name }}</h5>

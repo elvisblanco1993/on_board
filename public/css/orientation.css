@@ -7,6 +7,7 @@ body {
 .avatar {
     object-fit: cover; /* Do not scale the image */
     object-position: center; /* Center the image within the element */
+    box-shadow: 0 0.125rem 0.25rem rgba(72, 86, 128, 0.274) !important;
   }
 
 .bg-purple {
@@ -23,14 +24,24 @@ body {
 }
 
 .card {
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    border: 1px solid #eeeded;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.027) !important;
 }
 
 .card-header {
-    background-color: #f9f9f9;
-    border-bottom: .2px solid #dde1e6;
-    border-radius: .5rem .5rem 0 0 !important;
+    background-color: #f9f9f97c;
+    border-bottom: .2px solid #eeeded;
+    border-radius: .8rem .8rem 0 0 !important;
+}
+
+.card-footer {
+    background-color: #f9f9f97c;
+    border-top: .2px solid #eeeded;
+    border-radius: 0 0 .8rem .8rem !important;
+}
+
+.user-card:hover {
+    box-shadow: 0 0.125rem 0.25rem rgba(213, 224, 255, 0.527) !important;
 }
 
 a {

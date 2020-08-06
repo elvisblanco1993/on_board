@@ -8,12 +8,10 @@
     <table class="table table-hover table-borderless">
         <tbody>
             @forelse ($orientations as $orientation)
-            <tr class="align-middle">
-                <td>
-                    <a type="button" class="text-capitalize btn btn-block text-left text-primary" href="/orientation/{{ $orientation->id }}">
-                        <p class="mb-0 lead">
-                            {{ $orientation->name }}
-                        </p>
+            <tr>
+                <td class="align-middle">
+                    <a type="button" class="text-capitalize" href="/orientation/{{ $orientation->id }}">
+                        {{ $orientation->name }}
                     </a>
                 </td>
                 <td align="right" class="align-middle">

@@ -76,7 +76,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function orientations()
     {
-        return $this->belongsToMany(Orientation::class)->withTimestamps();
+        return $this->belongsToMany(Orientation::class)->withTimestamps()->withPivot('completed_at');
     }
 
     /**
