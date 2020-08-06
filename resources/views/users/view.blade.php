@@ -33,14 +33,20 @@
                         </div>
                         <div class="card-body">
 
-                            <div class="d-flex justify-content-center mb-4">
-                                <div class="media">
-                                    <img src="{{ url('/storage/images/' . $user->avatar) }}" alt="{{$user->name}}" class="avatar rounded mr-3" width="128" height="128">
-                                    <div class="media-body align-self-center">
-                                        <h4>{{$user->name}}</h4>
-                                        <p class="mb-0"><i class="fas fa-envelope text-secondary mr-2"></i> {{$user->email}}</p>
-                                        <p class="text-capitalize"> <i class="fas fa-user-tag text-secondary mr-2"></i>{{$user->roles[0]->label}}</p>
-                                        <p></p>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-4">
+                                            <div class="media">
+                                                <img src="{{ url('/storage/images/' . $user->avatar) }}" alt="{{$user->name}}" class="avatar rounded mr-3" width="128" height="128">
+                                                <div class="media-body align-self-center">
+                                                    <h4>{{$user->name}}</h4>
+                                                    <p class="mb-0"><i class="fas fa-envelope text-secondary mr-2"></i> {{$user->email}}</p>
+                                                    <p class="text-capitalize"> <i class="fas fa-user-tag text-secondary mr-2"></i>{{$user->roles[0]->label}}</p>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -50,9 +56,10 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
-                                            <div class="card">
+                                            {{-- Orientations --}}
+                                            <div class="card mb-4">
                                                 <div class="card-body">
-                                                    <h5 class="text-capitalize">
+                                                    <h5 class="text-capitalize mb-3">
                                                         <i class="fas fa-play-circle mr-1 text-secondary"></i>
                                                         Orientations
                                                     </h5>
@@ -68,7 +75,7 @@
                                                                             {{ $orientation->pivot->completed_at }}
                                                                         </span>
                                                                     @else
-                                                                        <i class="fas fa-spinner" title="Orientation still in progress or not started."></i>
+                                                                        <i class="fas fa-spinner fa-pulse" title="Orientation still in progress or not started."></i>
                                                                     @endif
                                                                 </li>
                                                             @endforeach
@@ -78,11 +85,11 @@
 
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col">
+
+                                            {{-- Documents --}}
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h5 class="text-capitalize">
+                                                    <h5 class="text-capitalize mb-3">
                                                         <i class="fas fa-file-pdf mr-1 text-danger"></i>
                                                         Documents
                                                     </h5>
@@ -94,11 +101,14 @@
                                                                     {{$document->name}}
 
                                                                     @if ( ! is_null( $document->pivot->signed_at ) )
-                                                                        <a class="text-danger" title="View / download signed document.">
+                                                                        <a
+                                                                            class="text-danger"
+                                                                            title="View / download signed document."
+                                                                            href="{{ url('#') }}">
                                                                             <i class="fas fa-file-pdf"></i>
                                                                         </a>
                                                                     @else
-                                                                        <i class="fas fa-spinner" title="Pending signature."></i>
+                                                                        <i class="fas fa-spinner fa-pulse" title="Pending signature."></i>
                                                                     @endif
                                                                 </li>
                                                             @endforeach

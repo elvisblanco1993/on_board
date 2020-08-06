@@ -2,7 +2,7 @@
 /public/hot
 /public/storage
 /storage/*.key
-/storage/certificates/*.crt
+/storage/certificates/tcpdf.crt
 /storage/certificates/*.pem
 /vendor
 .env
