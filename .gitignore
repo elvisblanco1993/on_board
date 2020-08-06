@@ -3,7 +3,7 @@
 /public/storage
 /storage/*.key
 /storage/certificates/tcpdf.crt
-/storage/certificates/*.pem
+!/storage/certificates/*
 /vendor
 .env
 .env.backup
