@@ -19,12 +19,14 @@
                         <div class="card user-card">
                             <div class="card-body">
                                 <div class="media">
-                                    <img
-                                        src="{{ url('/storage/images/' . $user->avatar) }}"
-                                        alt="{{$user->name}}"
-                                        class="avatar rounded mr-3"
-                                        width="96"
-                                        height="96">
+                                    @if ( $user->avatar )
+                                        <img
+                                            src="{{ url('/storage/images/' . $user->avatar) }}"
+                                            alt="{{$user->name}}"
+                                            class="avatar rounded-circle mr-3"
+                                            width="96"
+                                            height="96">
+                                    @endif
                                     <div class="media-body align-self-center">
                                         <h5 class="mt-0 text-dark">{{$user->name}}</h5>
                                         <p class="text-muted mb-0">{{$user->email}}</p>

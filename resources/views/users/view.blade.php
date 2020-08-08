@@ -41,7 +41,17 @@
                                     <div class="col">
                                         <div class="mb-4">
                                             <div class="media">
-                                                <img src="{{ url('/storage/images/' . $user->avatar) }}" alt="{{$user->name}}" class="avatar rounded mr-3" width="128" height="128">
+                                                @if ( $user->avatar )
+
+                                                    <img
+                                                    src="{{ url('/storage/images/' . $user->avatar) }}"
+                                                    alt="{{$user->name}}"
+                                                    class="avatar rounded-circle mr-3"
+                                                    width="128"
+                                                    height="128">
+
+                                                @endif
+
                                                 <div class="media-body align-self-center">
                                                     <h4>{{$user->name}}</h4>
                                                     <p class="mb-0"><i class="fas fa-envelope text-secondary mr-2"></i> {{$user->email}}</p>
