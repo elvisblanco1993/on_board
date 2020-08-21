@@ -15,7 +15,9 @@
                 </div>
             </div>
 
-            @include('student.documents.index')
+            @if ( !is_null($documents) )
+                @include('student.documents.index')
+            @endif
 
         @endif
 

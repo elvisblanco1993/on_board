@@ -175,8 +175,6 @@ Route::delete('users/{invitee}', 'UserController@deleteInvitee')->middleware('au
  */
 Route::put('user/{user}/update', 'BackendUserController@update')->middleware('auth');
 
-
-
 /**
  * Player
  */
@@ -188,19 +186,20 @@ Route::put('player/{orientation}/section/{section}', 'OrientationController@play
 
 Route::put('player/{orientation}/finish/{section}', 'OrientationController@finish')->middleware('auth');
 
-
 /**
  * Settings
  */
-Route::put('settings/store', 'SettingsController@detailsUpdate')->name('detailsUpdate');
-Route::put('settings/store/logo', 'SettingsController@logoUpdate')->name('logoUpdate');
-Route::put('settings/store/frontpage', 'SettingsController@saveFrontPageCode');
+Route::put('settings/store', 'SettingsController@detailsUpdate')->name('detailsUpdate')->middleware('auth');
+Route::put('settings/store/logo', 'SettingsController@logoUpdate')->name('logoUpdate')->middleware('auth');
+Route::put('settings/store/frontpage', 'SettingsController@saveFrontPageCode')->middleware('auth');
+Route::put('settings/store/whitelist', 'SettingsController@saveWhitelist')->middleware('auth');
+
+/**
+ * Delete a domain from the whitelist
+ */
+Route::delete('settings/domain/{id}', 'SettingsController@deleteDomain');
 
 Route::get('settings', 'SettingsController@index')->name('settings')->middleware('auth');
-Route::get('settings/company', 'SettingsController@showCompanySettings')->name('company')->middleware('auth');
-Route::get('settings/frontpage', 'SettingsController@showFrontPageSettings')->name('frontpage')->middleware('auth');
-
-
 
 /**
  * User Profile
@@ -208,9 +207,6 @@ Route::get('settings/frontpage', 'SettingsController@showFrontPageSettings')->na
 Route::get('my', 'UserController@edit')->name('my')->middleware('auth');
 Route::put('my/update', 'UserController@updateAvatar')->middleware('auth');
 Route::put('my/updatePassword', 'UserController@updatePassword')->middleware('auth');
-
-
-
 
 /**
  * =========

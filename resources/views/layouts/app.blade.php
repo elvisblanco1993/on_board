@@ -30,8 +30,8 @@
             @yield('content')
         </main>
     </div>
-    <nav class="navbar fixed-bottom py-0 justify-content-center">
+    {{-- <nav class="navbar fixed-bottom py-0 justify-content-center">
         <small class="text-muted">Powered by {{ config('app.name') }}</small>
-    </nav>
+    </nav> --}}
 </body>
 </html>

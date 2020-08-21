@@ -11,6 +11,7 @@ use App\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -52,6 +53,20 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $this->allowedDomains = DB::table('whitelist')->pluck('domain')->all();
+
+        if ( count( $this->allowedDomains ) > 0 ) {
+            Validator::extend('allowed_domains', function($attribute, $value, $parameters, $validator) {
+                return in_array(explode('@', $value)[1], $this->allowedDomains);
+            }, 'Domain not valid for registration.');
+
+            return Validator::make($data, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'allowed_domains'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+        }
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],

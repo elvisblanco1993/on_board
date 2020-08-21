@@ -168,7 +168,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="roles">Role</label>
-                                <select name="role" class="custom-select text-capitalize">
+                                <select name="role" class="form-control custom-select text-capitalize">
                                     @foreach ($appRoles as $appRole)
                                     <option
                                         class="text-capitalize"

@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="btn-secondary" class="mb-0">Secondary button</label>
-                                    <select name="btn_secondary" id="btn-secondary" class="custom-select {{ $errors->has('btn_secondary') ? 'is-invalid' : '' }}">
+                                    <select name="btn_secondary" id="btn-secondary" class="form-control custom-select {{ $errors->has('btn_secondary') ? 'is-invalid' : '' }}">
                                         <optgroup label="Full color">
                                             <option {{ $orientation->btn_secondary == 'btn-primary' ? 'selected' : '' }} value="btn-primary">Blue</option>
                                             <option {{ $orientation->btn_secondary == 'btn-success' ? 'selected' : '' }} value="btn-success">Green</option>

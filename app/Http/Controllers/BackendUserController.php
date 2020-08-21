@@ -18,14 +18,19 @@ class BackendUserController extends Controller
     public function index()
     {
         $role = User::find(Auth::user()->id)->getRoles();
-        $users = User::paginate('10');
+
+        $search = request('q');
+
+        $users = $search ? User::where('name', 'LIKE', "%$search%")->get() : User::paginate('10');
+
         $pendingInvites = Invite::all();
 
         return view('users.index', [
             'role' => $role,
             'users' => $users,
             'appRoles' => Role::get(),
-            'pendingInvites' => $pendingInvites
+            'pendingInvites' => $pendingInvites,
+            'search' => $search,
         ]);
     }
 

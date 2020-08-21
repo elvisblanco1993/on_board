@@ -31,6 +31,6 @@ class InviteEmail extends Mailable
     public function build()
     {
         return $this->markdown('email.invite-email')
-            ->subject('Hey there! Create your ' . config('app.name' . ' account.'));
+            ->subject('Create your ' . config('app.name') . ' account.');
     }
 }

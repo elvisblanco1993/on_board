@@ -6,6 +6,9 @@ use App\Settings;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class SettingsController extends Controller
 {
@@ -24,57 +27,15 @@ class SettingsController extends Controller
         $user = User::find(Auth::user()->id);
         $role = $user->getRoles();
         $settings = Settings::first();
+        $whitelist = DB::table('whitelist')->get();
 
         if ($role->contains('admin')) {
 
             return view('settings.index', [
                 'user' => $user,
                 'role' => $role,
-                'settings' => $settings
-            ]);
-
-        } else {
-            return redirect('/');
-        }
-    }
-
-    /**
-     * Show company settings
-     */
-    public function showCompanySettings()
-    {
-        $user = User::find(Auth::user()->id);
-        $role = $user->getRoles();
-        $settings = Settings::first();
-
-        if ($role->contains('admin')) {
-
-            return view('settings.company', [
-                'user' => $user,
-                'role' => $role,
-                'settings' => $settings
-            ]);
-
-        } else {
-            return redirect('/');
-        }
-    }
-
-    /**
-     * Show front page settings
-     */
-    public function showFrontPageSettings()
-    {
-        $user = User::find(Auth::user()->id);
-        $role = $user->getRoles();
-        $settings = Settings::first();
-
-        if ($role->contains('admin')) {
-
-            return view('settings.frontpage', [
-                'user' => $user,
-                'role' => $role,
-                'settings' => $settings
+                'settings' => $settings,
+                'whitelist' => $whitelist,
             ]);
 
         } else {
@@ -110,7 +71,7 @@ class SettingsController extends Controller
 
         $settings->update();
 
-        return redirect()->route('company')->with('message', 'Company details were successfully updated.');
+        return redirect()->route('settings')->with('message', 'Company details were successfully updated.');
 
     }
 
@@ -145,7 +106,7 @@ class SettingsController extends Controller
 
         $settings->update();
 
-        return redirect()->route('company')->with('message', 'Logo successfully updated.');
+        return redirect()->route('settings')->with('message', 'Logo successfully updated.');
 
 
     }
@@ -159,7 +120,34 @@ class SettingsController extends Controller
         $settings->frontpage = request('frontpage');
         $settings->update();
 
-        return redirect()->route('frontpage')->with('message', 'Front page contents were successfully uploaded.');
+        return redirect()->route('settings')->with('message', 'Front page contents were successfully uploaded.');
     }
 
+    /**
+     * Save a list of allowed domains
+     */
+    public function saveWhitelist(Request $request)
+    {
+        $request->validate([
+            'whitelist' => 'required'
+        ]);
+
+        $whiteList = array_map( 'trim', explode( ', ' ,  $request->whitelist ) );
+
+        foreach ($whiteList as $domain) {
+            DB::insert('insert into whitelist (domain) values (?)', [$domain]);
+        }
+
+        return redirect()->route('settings')->with('message', 'Your whitelist was successfully updated.');
+    }
+
+    /**
+     * Delete a whitelist element (domain)
+     */
+    public function deleteDomain($request)
+    {
+        DB::table('whitelist')->delete($request);
+
+        return redirect()->route('settings')->with('message', 'Domain successfully removed from the whitelist.');
+    }
 }

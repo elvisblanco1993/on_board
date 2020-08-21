@@ -7,47 +7,36 @@
 
             <div class="col-md-10">
 
-                <div class="card">
+                <div class="row">
 
-                    <div class="card-header d-flex justify-content-between">
+                    <div class="col-md-6">
 
-                        <span class="lead">
-                            Settings
-                        </span>
+                        @include('settings.partials.company')
 
                     </div>
 
-                    <div class="card-body">
-                        @if (session('message'))
-                            <div class="alert alert-success" role="alert">
-                                <strong>{{ session('message') }}</strong>
-                            </div>
-                        @endif
-                        @if (session('errMessage'))
-                            <div class="alert alert-danger" role="alert">
-                                <strong>{{ session('errMessage') }}</strong>
-                            </div>
-                        @endif
+                    <div class="col-md-6">
 
-                        @error('logo')
-                            <div class="alert alert-danger" role="alert">
-                                {{$message}}
-                            </div>
-                        @enderror
+                        @include('settings.partials.front-page')
 
-                        <div class="row">
+                    </div>
 
-                            <div class="col-md-12">
+                </div>
 
-                            </div>
+                <div class="row my-4">
 
-                        </div>
+                    <div class="col-md-4">
+
+                        @include('settings.partials.allowed-domains')
 
                     </div>
 
                 </div>
 
             </div>
+
+            @include('layouts.alert')
+
         </div>
     </div>
 @endsection

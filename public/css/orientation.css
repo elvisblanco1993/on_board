@@ -17,10 +17,9 @@ body {
 .form-control,
 .btn,
 .card,
-.custom-select,
 .modal-content,
 .alert {
-    border-radius: .8rem !important;
+    border-radius: .6rem !important;
 }
 
 .card {
@@ -31,13 +30,13 @@ body {
 .card-header {
     background-color: #f9f9f97c;
     border-bottom: .2px solid #eeeded;
-    border-radius: .8rem .8rem 0 0 !important;
+    border-radius: .6rem .6rem 0 0 !important;
 }
 
 .card-footer {
     background-color: #f9f9f97c;
     border-top: .2px solid #eeeded;
-    border-radius: 0 0 .8rem .8rem !important;
+    border-radius: 0 0 .6rem .6rem !important;
 }
 
 .user-card:hover {
@@ -64,5 +63,50 @@ a {
     transform: rotate(359deg);
   }
 }
+
+/* Alert | Notification Popup */
+
+.snackbar {
+    padding: 1.2rem;
+    border-radius: .4rem;
+    bottom: 2rem;
+    right: 2rem;
+    position: fixed;
+    animation-name: snackbar;
+    animation-duration: 6s;
+    opacity: 0%;
+}
+
+.snackbar-success {
+    background-color: #68d391;
+    color: #22543d;
+}
+
+.snackbar-danger {
+    background-color: #fc8181;
+    color: #742a2a;
+}
+
+@keyframes snackbar {
+    from {
+        opacity: 0%;
+    }
+
+    10% {
+        opacity: 100%;
+    }
+
+    60% {
+        opacity: 100%;
+    }
+
+    to {
+        opacity: 0%;
+    }
+}
+
+
+
+
 
 

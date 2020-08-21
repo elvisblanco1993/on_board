@@ -1,7 +1,7 @@
 @component('mail::message')
 ## Dear {{ $name }}
 
-You have been invited to join {{ config('app.name') }} platform.
+You have been invited to join {{ config('app.name') }}.
 
 Please click the button below to get started.
 
