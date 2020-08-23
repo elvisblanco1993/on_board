@@ -122,13 +122,15 @@ class DocumentController extends Controller
         // End of document signature
 
 
-        $encryptUserSignature = Crypt::encryptString($documentName . $user->name . $signedAt);
+        $encryptedDocumentCode = Crypt::encryptString($documentName . $user->name . $signedAt);
 
-        $signature = "<div>
+        $readableSignedDate = date('F j, Y g:i:s a', strtotime($signedAt));
+
+        $signature = "<div style=\"font-size: 10pt\">
                         <hr>
-                        <p style='font-size: 6pt'>Signed by: $user->name</p>
-                        <p style='font-size: 6pt'>Signed on: $signedAt</p>
-                        <p style='font-size: 6pt'>Encrypted data: <small>$encryptUserSignature</small></p>
+                        <p>Signature: <u style=\"color: darkblue\"><i>$user->name</i></u></p>
+                        <p>Date: <u style=\"color: darkblue\"><i>$readableSignedDate</i></u></p>
+                        <p><span style=\"color: red; font-size: 6pt\">$encryptedDocumentCode</span></p>
                       </div>";
 
         TCPDF::SetTitle($document->name);
@@ -139,7 +141,7 @@ class DocumentController extends Controller
         TCPDF::SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
         TCPDF::AddPage();
         TCPDF::writeHTML($document->content, true, 0, true, 0);
-        TCPDF::writeHTML($signature, true, 0, true, 0);
+        TCPDF::writeHTML($signature, true, false, true, false, '');
         TCPDF::lastPage();
         TCPDF::Output($documentName . '.pdf', 'I');
         TCPDF::reset();
