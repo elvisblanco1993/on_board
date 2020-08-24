@@ -24,11 +24,6 @@
                 </div>
             </div>
         </div>
-
-        @if ( ! is_null ( $documents ) )
-            @include('student.documents.index')
-        @endif
-
     </div>
 </div>
 @endsection

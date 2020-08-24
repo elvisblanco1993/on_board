@@ -133,7 +133,6 @@ class OrientationController extends Controller
     public function unenroll(Orientation $orientation, User $user)
     {
         $student = User::find($user)->first();
-
         $student->orientations()->detach($orientation);
         $student->sections()->detach();
 
@@ -201,10 +200,24 @@ class OrientationController extends Controller
         // Assessment variables
         $possibleAnswers = DB::table('answers')->where('question_id', $section->id)->get()->shuffle() ?? null;
 
+
+
         // Sections variables
-        $current = $section->id;
-        $next = $section->where('id', '>', $current)->first()->id ?? $current;
-        $prev = $section->where('id', '<', $current)->orderBy('id','desc')->first()->id ?? $current;
+
+        $current = $next = $prev = null;
+
+        if ( ! is_null ( $orientation->sections()->find($section->id) ) ) {
+            $current = $section->id;
+        }
+
+        if ( ! is_null ( $orientation->sections()->find($section->where('id', '>', $section->id)->first()) ) ) {
+            $next = $section->where('id', '>', $section->id)->first()->id;
+        }
+
+        if ( ! is_null ( $orientation->sections()->find($section->where('id', '<', $section->id)->orderBy('id','desc')->first()) ) ) {
+            $prev = $section->where('id', '<', $section->id)->orderBy('id','desc')->first()->id;
+        }
+
 
         // Sync the student with the sections beforehand
         $user->sections()->sync($orientation->sections, false);
@@ -282,6 +295,7 @@ class OrientationController extends Controller
         return view('orientation.stats', [
             'students' => $students,
             'role' => $role,
+            'orientation' => $orientation,
         ]);
     }
 

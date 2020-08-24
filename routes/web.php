@@ -178,6 +178,8 @@ Route::put('user/{user}/update', 'BackendUserController@update')->middleware('au
 /**
  * Player
  */
+Route::get('player/{orientation}', 'PlayerController@index')->middleware('auth');
+
 Route::get('player/{orientation}/section/{section}', 'OrientationController@player')->middleware('auth');
 
 Route::get('player/{orientation}/continue/{section}', 'OrientationController@continue')->name('continue')->middleware('auth');

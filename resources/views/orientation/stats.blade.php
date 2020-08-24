@@ -74,8 +74,8 @@
                                                     <div class="modal-body text-left">
                                                         <p class="lead">Are you sure you want to unenroll this student?</p>
                                                         <p>Any progress made by the student will be permanently lost.</p>
-
-                                                        <form action="/orientation/{{ $student->orientations[0]->id }}/unenroll/{{ $student->id }}" method="post">
+                                                        {{ $orientation }}
+                                                        <form action="/orientation/{{ $orientation->id }}/unenroll/{{ $student->id }}" method="post">
                                                             @csrf
                                                             @method('PUT')
 

@@ -39,14 +39,16 @@
                             @method('PUT')
 
                             <div class="form-group">
-                                @foreach ($students as $student)
+                                @forelse ($students as $student)
                                     <div class="custom-control custom-checkbox my-2">
                                         <input class="custom-control-input" type="checkbox" value="{{ $student->id }}" id="user{{ $orientation->id }}{{ $student->id }}" name="enroll[]">
                                         <label class="custom-control-label" for="user{{ $orientation->id }}{{ $student->id }}">
                                             {{ $student->name }} - {{ $student->email }}
                                         </label>
                                     </div>
-                                @endforeach
+                                @empty
+                                    <p>There are currently no students on the system.</p>
+                                @endforelse
                             </div>
 
                         </div>

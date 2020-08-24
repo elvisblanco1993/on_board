@@ -2,61 +2,81 @@
 @section('content')
 <div class="container mt-4">
     <div class="row">
-
-        {{-- No orientations have been assigned --}}
-        @if ( $user->orientations->count() === 0 )
-
-            <div class="card w-100">
-                <div class="card-body text-center py-5">
-                    <h4>Hey there!</h4>
-                    <p class="lead">
-                        We are glad you could make it here. <br>It seems there are no orientations assigned to you at this time. Please contact your advisor for more details.
-                    </p>
-                </div>
-            </div>
-
-            @if ( !is_null($documents) )
-                @include('student.documents.index')
-            @endif
-
-        @endif
-
-        {{-- An orientation was assigned, but is empty --}}
-        @isset($hasSections)
-            @if ($hasSections === false)
-                <div class="card w-100">
-                    <div class="card-body">
-                        <h1>Something went wrong...</h1>
-                        <p class="lead">It seems we are having trouble getting your orientation started.</p>
-                        <p>Please contact your advisor with the error code: <code>nosectionsfound</code></p>
-                    </div>
+        <div class="col-md-12">
+            <h4>
+                Orientations
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 m-0">
+            @if (session('message'))
+                <div class="alert alert-success" role="alert">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>{{ session('message') }}</strong>
                 </div>
             @endif
-        @endisset
+            @if (session('info'))
+                <div class="alert alert-info" role="alert">
+                    <strong>{{ session('info') }}</strong>
+                </div>
+            @endif
+            @if (session('errMessage'))
+                <div class="alert alert-warning" role="alert">
+                    <strong>{{ session('errMessage') }}</strong>
+                </div>
+            @endif
+        </div>
 
         @isset($orientations)
-            <div class="card w-100">
-                <div class="card-header">
-                    <h4 class="mb-0">
-                        Completed orientations
-                    </h4>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group">
-                        @foreach ($orientations  as $orientation)
 
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {{ $orientation->name }}
+            @foreach ($orientations  as $orientation)
+
+                @isset($orientation->users->first()->pivot->completed_at)
+                    <div class="card col-md-3 m-2 p-0">
+                        <span
+                            style="height: 5rem; background-color: {{ $cardBg }}; border-radius: .6rem .6rem 0 0">
+                        </span>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $orientation->name }}</h5>
+                            <p class="card-text">
                                 <span class="badge badge-success">
                                     <span class="font-weight-bolder">Completed on</span> {{ $orientation->users->first()->pivot->completed_at }}
                                 </span>
-                            </li>
+                            </p>
+                            <a href="{{ url('/player/' . $orientation->id) }}" class="btn btn-primary">VIEW ORIENTATION</a>
+                        </div>
+                    </div>
+                @else
+                    <div class="card col-md-3 m-2 p-0">
+                        <span
+                            style="height: 5rem; background-color: {{ $cardBg }}; border-radius: .6rem .6rem 0 0">
+                        </span>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $orientation->name }}</h5>
+                            <p class="card-text text-truncate">{{ $orientation->description }}</p>
+                            <a href="{{ url('/player/' . $orientation->id) }}" class="btn btn-primary">OPEN ORIENTATION</a>
+                        </div>
+                    </div>
+                @endisset
 
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
+            @endforeach
+
         @endisset
     </div>
+
+
+    {{-- Show Documents --}}
+    @if ( count( $documents ) > 0 )
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <h4>
+                Documents
+            </h4>
+        </div>
+        @include('student.documents.index')
+    </div>
+    @endif
+
 </div>
 @endsection

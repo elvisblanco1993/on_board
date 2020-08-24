@@ -1,24 +1,5 @@
-<div class="card w-100 mt-4">
-    <div class="card-body py-4">
-        <div class="alert alert-info">
-            <i class="fas fa-file-contract mr-2"></i>
-            You have pending documents.
-        </div>
-        <p>Please review and sign the documents listed below.</p>
-
-        @if (session('message'))
-            <div class="alert alert-success" role="alert">
-                <i class="fas fa-check-circle"></i>
-                {{ session('message') }}
-            </div>
-        @endif
-
-        @if (session('errMessage'))
-            <div class="alert alert-danger" role="alert">
-                {{ session('errMessage') }}
-            </div>
-        @endif
-
+<div class="card w-100">
+    <div class="card-body">
         <table class="table table-borderless table-hover">
             <tbody>
 

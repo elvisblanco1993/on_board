@@ -193,6 +193,11 @@ class DocumentController extends Controller
     }
 
     /**
+     * Attach to student
+     */
+
+
+    /**
      * Delete a document
      */
     public function delete(Document $document)

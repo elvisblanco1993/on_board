@@ -32,9 +32,14 @@ class UserController extends Controller
         $user = Auth::user();
         $role = User::find(Auth::user()->id)->getRoles();
 
+
+        // $students = User::whereHas("roles", function($q){
+        //     $q->where("name", "student");
+        // })->doesntHave('orientations')->get();
+
         $students = User::whereHas("roles", function($q){
             $q->where("name", "student");
-        })->doesntHave('orientations')->get();
+        })->get();
 
         // IS AN ADMIN
         if ($role->contains('admin')) {
@@ -66,110 +71,19 @@ class UserController extends Controller
 
             $orientations = $user->orientations;
             $sections = $user->sections;
-            $documents = null;
+            $documents = User::find(Auth::user()->id)->documents;
             $first = DB::table('section_user')->where('user_id', $user->id)->first();
+            $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
+            $bgcolor = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
 
 
-            // Has Orientation?
-            if ( !empty( $orientations->toArray() ) ) {
-                // Sync the sections to the current user
-                $tempUsr = User::find(Auth::user()->id);
-                $toSync = Orientation::find( $orientations->first()->id )->sections;
+            return view('student.index', [
+                'user' => $user,
+                'orientations' => $orientations,
+                'cardBg' => $bgcolor,
+                'documents' => $documents,
+            ]);
 
-                $tempUsr->sections()->sync($toSync, false);
-
-                // Assign documents directly from the orientation
-                $tempUsr->documents()->sync(Orientation::find( $orientations->first()->id )->documents, false);
-                $documents = User::find(Auth::user()->id)->documents;
-
-                // Let's re-check for sections now
-                $first = DB::table('section_user')->where('user_id', $user->id)->first();
-
-                // Has sections assigned?
-                if ( !empty( $sections->toArray() ) ) {
-
-                    // Check if there are sections completed
-                    $start_at = DB::table('section_user')->where('user_id', $user->id)->where('completed_at', null)->first();
-
-                    if (is_null($start_at)) {
-                        // Student completed orientation, show that the orientation was completed.
-                        foreach ($orientations as $orientation) {
-                            $orientationName = $orientation->name;
-                            $orientationBg = $orientation->background;
-                        }
-
-                        return view('student.myorientation.done', [
-                            'user' => $user,
-                            'role' => $role,
-                            'completed' => true,
-                            'orientationName' => $orientationName,
-                            'orientationBg' => $orientationBg,
-                            'documents' => $documents,
-                        ]);
-
-                    } else {
-
-                        // Check if the student already made progress on the orientation.
-                        if ($first->section_id == $start_at->section_id) {
-
-                            // Start at the first section
-                            return view('student.show', [
-                                'user' => $user,
-                                'role' => $role,
-                                'start_at' => $first->section_id,
-                                'documents' => $documents,
-                            ]);
-
-                        } else {
-                            // Otherwise start at the start_at slide
-                            return view('student.show', [
-                                'user' => $user,
-                                'role' => $role,
-                                'start_at' => $start_at->section_id,
-                                'documents' => $documents,
-                            ]);
-                        }
-                    }
-
-                }
-                else {
-                    /**
-                     * If the orientation has content, redirect to the orientation
-                     */
-                    if ( !is_null( $first ) ) {
-                        return view('student.show', [
-                            'user' => $user,
-                            'role' => $role,
-                            'start_at' => $first->section_id,
-                            'documents' => $documents,
-                        ]);
-                    } else {
-                        // Redirect to index and let the student know the orientation is empty.
-                        return view('student.index', [
-                            'user' => $user,
-                            'role' => $role,
-                            'completed' => false,
-                            'hasSections' => false,
-                            'documents' => $documents,
-                        ]);
-                    }
-                }
-
-                return view('student.index', [
-                    'user' => $user,
-                    'role' => $role,
-                    'completed' => false,
-                    'documents' => $documents,
-                ]);
-
-            } else {
-                return view('student.index', [
-                    'user' => $user,
-                    'role' => $role,
-                    'completed' => false,
-                    'documents' => $documents,
-                ]);
-            }
         }
     }
 

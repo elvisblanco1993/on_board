@@ -2,7 +2,6 @@
 
 @section('content')
 
-    @forelse ($user->orientations as $orientation)
         {{-- Student Dashboard --}}
         <div
             class="container"
@@ -46,22 +45,4 @@
                 </div>
             </div>
         </div>
-    @empty
-    <div class="container my-4">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>
-                    Welcome, {{$user->name}}!
-                </h2>
-                <div class="card text-left">
-                    <div class="card-body">
-                    <h4 class="card-title">There is nothing pending at this time.</h4>
-                    <p class="card-text">Please come back later.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endforelse
-
 @endsection
