@@ -1,11 +1,10 @@
 ***New features
-[*] User registration limited by domain
-[] Create table to store Short Document Identifiers. (10-digit-long).
-[] Print the Short Document Identifier on the pdf.
-[] search documents by Identifier.
+[*] User registration limited by domain.
+[*] Allow students to be registered on multiple orientations.
+[] Add completion certificate to orientations.
 
 ***Maintenance
-[] Make documents look better.
+[*] Make documents look better.
 [] Re-design the Student Interface with a sidebar for progress.
 
 ***Documentation

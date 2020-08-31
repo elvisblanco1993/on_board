@@ -110,4 +110,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Document::class)->withTimestamps()->withPivot('signed_at');
     }
+
+    /**
+     * Get user completion certificates
+     */
+    public function certificates()
+    {
+        return $this->belongsToMany(Certificate::class)->withTimestamps();
+    }
 }

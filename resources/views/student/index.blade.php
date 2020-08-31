@@ -27,42 +27,56 @@
                 </div>
             @endif
         </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
 
         @isset($orientations)
 
             @foreach ($orientations  as $orientation)
 
                 @isset($orientation->users->first()->pivot->completed_at)
-                    <div class="card col-md-3 m-2 p-0">
-                        <span
-                            style="height: 5rem; background-color: {{ $cardBg }}; border-radius: .6rem .6rem 0 0">
-                        </span>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $orientation->name }}</h5>
-                            <p class="card-text">
-                                <span class="badge badge-success">
-                                    <span class="font-weight-bolder">Completed on</span> {{ $orientation->users->first()->pivot->completed_at }}
-                                </span>
-                            </p>
-                            <a href="{{ url('/player/' . $orientation->id) }}" class="btn btn-primary">VIEW ORIENTATION</a>
+                    <div class="col-md-3">
+
+                        <div class="card p-0">
+                            <span
+                                style="height: 5rem; background-color: {{ $cardBg }}; border-radius: .6rem .6rem 0 0">
+                            </span>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $orientation->name }}</h5>
+                                <p class="card-text">
+                                    <span class="badge badge-success">
+                                        <span class="font-weight-bolder">Completed on</span> {{ $orientation->users->first()->pivot->completed_at }}
+                                    </span>
+                                </p>
+                                <a href="{{ url('/player/' . $orientation->id) }}" class="btn btn-sm btn-primary">Open</a>
+                            </div>
                         </div>
+
                     </div>
                 @else
-                    <div class="card col-md-3 m-2 p-0">
-                        <span
-                            style="height: 5rem; background-color: {{ $cardBg }}; border-radius: .6rem .6rem 0 0">
-                        </span>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $orientation->name }}</h5>
-                            <p class="card-text text-truncate">{{ $orientation->description }}</p>
-                            <a href="{{ url('/player/' . $orientation->id) }}" class="btn btn-primary">OPEN ORIENTATION</a>
+
+                    <div class="col-md-3">
+
+                        <div class="card p-0">
+                            <span
+                                style="height: 5rem; background-color: {{ $cardBg }}; border-radius: .6rem .6rem 0 0">
+                            </span>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $orientation->name }}</h5>
+                                <p class="card-text text-truncate">{{ $orientation->description }}</p>
+                                <a href="{{ url('/player/' . $orientation->id) }}" class="btn btn-sm btn-primary">START ORIENTATION</a>
+                            </div>
                         </div>
+
                     </div>
+
                 @endisset
 
             @endforeach
 
         @endisset
+
     </div>
 
 

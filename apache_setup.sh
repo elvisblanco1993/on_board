@@ -31,7 +31,7 @@ npm install;
 
 # Create the database
 sudo mysql -u root -p;
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'bahia9397';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '!@9ijnbhu8@!';
 GRANT ALL PRIVILEGES ON *.* to 'root'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 CREATE DATABASE odb;

@@ -74,7 +74,6 @@
                                                     <div class="modal-body text-left">
                                                         <p class="lead">Are you sure you want to unenroll this student?</p>
                                                         <p>Any progress made by the student will be permanently lost.</p>
-                                                        {{ $orientation }}
                                                         <form action="/orientation/{{ $orientation->id }}/unenroll/{{ $student->id }}" method="post">
                                                             @csrf
                                                             @method('PUT')
@@ -82,7 +81,7 @@
 
                                                             <div class="text-right">
                                                                 <button type="button" class="btn btn-light mr-2" data-dismiss="modal">Cancel</button>
-                                                                <button type="submit" class="btn btn-primary">Unenroll</button>
+                                                                <button type="submit" class="btn btn-primary">I understand. Unenroll</button>
                                                             </div>
                                                         </form>
                                                     </div>

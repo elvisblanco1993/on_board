@@ -36,4 +36,12 @@ class Orientation extends Model
     {
         $this->sections()->sync($section, false);
     }
+
+    /**
+     * Completion certificate
+     */
+    public function certificate()
+    {
+        return $this->belongsTo(Certificate::class);
+    }
 }

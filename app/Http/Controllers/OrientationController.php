@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Certificate;
 use App\Exports\OrientationStatisticsExport;
 use App\Mail\UserEnrolled;
 use App\Mail\OrientationCompleted;
@@ -32,9 +33,12 @@ class OrientationController extends Controller
     public function edit(Orientation $orientation)
     {
         $role = User::find(Auth::user()->id)->getRoles();
+        $certificate = Certificate::where('orientation_id', $orientation->id)->get()[0] ?? null;
+
         return view('orientation.edit', [
             'orientation' => $orientation,
-            'role' => $role
+            'role' => $role,
+            'certificate' => $certificate,
         ]);
     }
 

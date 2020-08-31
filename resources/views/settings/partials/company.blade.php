@@ -55,6 +55,33 @@
                     </div>
                 </form>
 
+
+
+                <div class="modal fade" id="uploadLogo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body pb-0">
+                                <form action="{{ url('settings/store/logo') }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="logo" id="logo" aria-describedby="logoLabel">
+                                            <label class="custom-file-label" for="logo">Choose file</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group d-flex justify-content-end">
+                                        <button class="btn btn-light mr-2" data-dismiss="modal">Dismiss</button>
+                                        <button type="submit" class="btn btn-success">
+                                            Upload
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
