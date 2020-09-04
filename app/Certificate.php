@@ -25,7 +25,7 @@ class Certificate extends Model
 
     public function orientation()
     {
-        return $this->belongsTo(Orientation::class);
+        return $this->belongsToMany(Orientation::class)->withTimestamps();
     }
 
     public function users()

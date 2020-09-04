@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Certificate;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Orientation;
@@ -72,10 +73,10 @@ class UserController extends Controller
             $orientations = $user->orientations;
             $sections = $user->sections;
             $documents = User::find(Auth::user()->id)->documents;
+
             $first = DB::table('section_user')->where('user_id', $user->id)->first();
             $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
             $bgcolor = '#'.$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)].$rand[rand(0,15)];
-
 
             return view('student.index', [
                 'user' => $user,

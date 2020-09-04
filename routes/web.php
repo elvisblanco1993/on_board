@@ -201,6 +201,7 @@ Route::put('settings/store/whitelist', 'SettingsController@saveWhitelist')->midd
  */
 Route::post('orientation/{orientation}/certificate', 'CertificateController@store')->middleware('auth');
 Route::get('certificate/{certificate}', 'CertificateController@show')->middleware('auth');
+Route::get('/certificate/{certificate}/download', 'CertificateController@generate')->middleware('auth');
 
 /**
  * Delete a domain from the whitelist

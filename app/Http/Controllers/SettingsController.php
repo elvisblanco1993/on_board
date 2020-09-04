@@ -26,7 +26,7 @@ class SettingsController extends Controller
     {
         $user = User::find(Auth::user()->id);
         $role = $user->getRoles();
-        $settings = Settings::first();
+        $settings = Settings::first() ?? null;
         $whitelist = DB::table('whitelist')->get();
 
         if ($role->contains('admin')) {

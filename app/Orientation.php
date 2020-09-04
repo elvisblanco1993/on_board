@@ -42,6 +42,6 @@ class Orientation extends Model
      */
     public function certificate()
     {
-        return $this->belongsTo(Certificate::class);
+        return $this->belongsToMany(Certificate::class)->withTimestamps();
     }
 }

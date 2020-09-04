@@ -29,13 +29,13 @@
         </div>
     </div>
 
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex">
 
         @isset($orientations)
 
             @foreach ($orientations  as $orientation)
 
-                @isset($orientation->users->first()->pivot->completed_at)
+                @isset($orientation->users->find($user->id)->pivot->completed_at)
                     <div class="col-md-3">
 
                         <div class="card p-0">
@@ -49,7 +49,15 @@
                                         <span class="font-weight-bolder">Completed on</span> {{ $orientation->users->first()->pivot->completed_at }}
                                     </span>
                                 </p>
-                                <a href="{{ url('/player/' . $orientation->id) }}" class="btn btn-sm btn-primary">Open</a>
+                                {{-- <a href="{{ url('/player/' . $orientation->id) }}" class="btn btn-sm btn-primary">Open</a> --}}
+
+                                {{-- Download Certificate --}}
+                                @if ( $orientation->certificate->first()->status === 'on' )
+                                    <form action="{{ url('/certificate/' . $orientation->certificate->first()->id . '/download') }}" method="GET">
+                                        @csrf
+                                        <button class="btn btn-sm btn-primary">Download Certificate</button>
+                                    </form>
+                                @endif
                             </div>
                         </div>
 

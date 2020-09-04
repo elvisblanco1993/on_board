@@ -21,14 +21,26 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <button class="img-thumbnail" type="button" data-toggle="modal" data-target="#uploadLogo">
-                                <img src="{{ url('storage/images') . '/' . $settings->school_logo }}" alt="{{ config('app.name') }}" width="100%">
+                                <img
+                                    @if ( ! is_null ($settings) )
+                                        src="{{ url('storage/images') . '/' . $settings->school_logo }}"
+                                    @endif
+                                    alt="{{ config('app.name') }}"
+                                    width="100%">
                             </button>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="">Institution name</label>
-                            <input type="text" class="form-control" name="company_name" value="{{ $settings->school_name ?? old('company_name') }}">
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="company_name"
+                                @if ( ! is_null ($settings) )
+                                    value="{{ $settings->school_name ?? old('company_name') }}"
+                                @endif
+                                >
                         </div>
                     </div>
 

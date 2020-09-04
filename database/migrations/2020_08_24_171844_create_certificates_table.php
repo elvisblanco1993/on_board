@@ -15,7 +15,6 @@ class CreateCertificatesTable extends Migration
     {
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
-            $table->integer('orientation_id');
             $table->string('status')->nullable();
             $table->string('paper_orientation')->default('landscape');
 

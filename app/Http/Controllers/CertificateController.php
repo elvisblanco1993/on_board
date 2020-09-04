@@ -7,6 +7,8 @@ use App\Orientation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\User;
 
 class CertificateController extends Controller
 {
@@ -42,7 +44,6 @@ class CertificateController extends Controller
         if ( ! isset( $certificateId ) ) {
             $cert = new Certificate();
 
-            $cert->orientation_id = $orientation_id;
             $cert->status = $status;
             $cert->paper_orientation = $paperOrientation;
             $cert->body_bg = $body_bg;
@@ -58,6 +59,8 @@ class CertificateController extends Controller
             $cert->cert_text_color = $cert_text_color;
             $cert->footer_text_color = $footer_text_color;
             $cert->save();
+
+            $cert->orientation()->attach($orientation_id);
 
             return redirect(route('dashboard'))->with('message', 'Certificate successfully created.');
         }
@@ -105,10 +108,16 @@ class CertificateController extends Controller
     /**
      * Update certificate
      */
-    public function update(Certificate $certificate)
+    public function generate(Certificate $certificate)
     {
-        dd(
-            $certificate
-        );
+        $orientation = $certificate->orientation->first();
+
+        $user = User::find(Auth::user()->id);
+
+        $pdf = PDF::loadView('documents.certificate', compact(['certificate', 'orientation', 'user']))
+            ->setPaper('letter', "$certificate->paper_orientation")
+            ->setOptions(['debugLayoutLines' => true]);
+        return $pdf->download();
+
     }
 }

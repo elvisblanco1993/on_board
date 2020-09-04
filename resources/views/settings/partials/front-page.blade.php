@@ -25,7 +25,7 @@
                             id="fpage"
                             cols="30"
                             rows="10"
-                            placeholder="Insert your html here..">{{ $settings->frontpage }}</textarea>
+                            placeholder="Insert your html here..">@if ( $settings ) {{ $settings->frontpage }}  @endif</textarea>
                     </div>
                     @error('frontpage')
                         <p class="text-danger">{{ $message }}</p>

@@ -33,7 +33,9 @@ class OrientationController extends Controller
     public function edit(Orientation $orientation)
     {
         $role = User::find(Auth::user()->id)->getRoles();
-        $certificate = Certificate::where('orientation_id', $orientation->id)->get()[0] ?? null;
+        $certificate = $orientation->certificate ?? null;
+
+        // dd($certificate);
 
         return view('orientation.edit', [
             'orientation' => $orientation,

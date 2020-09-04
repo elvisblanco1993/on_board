@@ -57,7 +57,7 @@
             <button class="btn {{ $orientation->btn_secondary ?? 'btn-light' }}" disabled><i class="fas fa-chevron-left"></i> PREVIOUS</button>
 
             @endif
-            @if ( !is_null($next) && $next !== $current )
+            @if ( ! is_null( $next ) && $next !== $current )
 
                 <form action="/player/{{ $orientation->id }}/section/{{ $next }}" method="post">
                     @csrf

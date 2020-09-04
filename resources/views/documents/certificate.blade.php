@@ -76,14 +76,37 @@
         <div class="certificate-interior">
             <h1 id="title">CERTIFICATE OF COMPLETION</h1>
             <div class="inter">***********************************************</div>
-            <h3 id="certifies">THIS AWARD CERTIFIES THAT</h3>
-            <h2 id="name"><u>{{ 'Elvis Blanco' }}</u></h2>
-            <h3 id="completed">HAS SUCCESSFULLY COMPLETED</h3>
-            <h2 id="course"><u>{{ 'Course Name' }}</u></h2>
+            <h4 id="certifies">THIS AWARD CERTIFIES THAT</h4>
+            <h2 id="name">
+                <u>
+                    @isset($user)
+                        {{ $user->name }}
+                    @else
+                        John Carter
+                    @endisset
+                </u>
+            </h2>
+            <h4 id="completed">HAS SUCCESSFULLY COMPLETED</h4>
+            <h2 id="course">
+                <u>
+                    @isset($orientation)
+                        {{ $orientation->name }}
+                    @else
+                        Where it all begins
+                    @endisset
+                </u>
+            </h2>
         </div>
     </div>
     <div class="cert-data">
-        <p>Certificate ID: 1234321 / Completed on: September 10, 2020</p>
+        <p>
+            Completed on:
+            @isset($orientation)
+                {{ $orientation->users->find($user->id)->pivot->completed_at }}
+            @else
+            January 1, 2020
+            @endisset
+        </p>
     </div>
 </body>
 </html>

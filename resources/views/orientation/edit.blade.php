@@ -133,8 +133,7 @@
                                 @enderror
                             </div>
                             <div class="form-group float-right">
-                                <a href="{{ url()->previous() }}" class="btn btn-light mr-2">Dismiss</a>
-                                <input class="btn btn-success shadow-sm" type="submit" value="Save details">
+                                <input class="btn btn-success shadow-sm" type="submit" value="Save">
                             </div>
                         </form>
                     </div>
@@ -146,15 +145,15 @@
                     <form action="{{ url('/orientation/'.$orientation->id.'/certificate') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
-                        @if ( ! is_null ( $certificate ) )
-                            <input type="hidden" name="certid" value="{{ $certificate->id }}">
+                        @if ( count ( $certificate ) === 1 )
+                            <input type="hidden" name="certid" value="{{ $certificate[0]->id }}">
                         @endif
 
                         <div class="card-header d-flex justify-content-between">
                             <span class="lead text-capitalize">
                                 Certificate
-                                @if ( ! is_null( $certificate ) )
-                                    <a href="{{ url('/certificate/' . $certificate->id) }}" target="_blank">
+                                @if ( count ( $certificate ) === 1 )
+                                    <a href="{{ url('/certificate/' . $certificate[0]->id) }}" target="_blank">
                                         <i class="fas fa-eye ml-2"></i>
                                     </a>
                                 @endif
@@ -166,7 +165,7 @@
                                     id="status"
                                     type="checkbox"
                                     name="status"
-                                    @if ( ! is_null ($certificate) && $certificate->status === 'on' )
+                                    @if ( count ( $certificate ) === 1 && $certificate[0]->status === 'on' )
                                         checked
                                     @endif>
                                 <label class="custom-control-label" for="status">Enable / Disable</label>
@@ -183,7 +182,7 @@
                                         name="po"
                                         value="landscape"
                                         class="custom-control-input"
-                                        @if ( ! is_null ($certificate) && $certificate->paper_orientation === 'landscape' )
+                                        @if ( count ( $certificate ) === 1 && $certificate[0]->paper_orientation === 'landscape' )
                                             checked
                                         @endif>
                                     <label class="custom-control-label" for="landscape">Landscape</label>
@@ -195,7 +194,7 @@
                                         name="po"
                                         value="portrait"
                                         class="custom-control-input"
-                                        @if ( ! is_null ($certificate) && $certificate->paper_orientation === 'portrait' )
+                                        @if ( count ( $certificate ) === 1 && $certificate[0]->paper_orientation === 'portrait' )
                                             checked
                                         @endif>
                                     <label class="custom-control-label" for="portrait">Portrait</label>
@@ -212,7 +211,8 @@
                                     type="color"
                                     name="body_bg"
                                     id="body_bg"
-                                    value="{{ $certificate->body_bg ?? '#ffffff' }}">
+                                    value="@if ( count($certificate) == 1 ){{ $certificate[0]->body_bg }}@else #ffffff @endif"
+                                >
                             </div>
 
                             {{-- Certificate bg --}}
@@ -222,7 +222,8 @@
                                     type="color"
                                     name="cert_bg"
                                     id="cert_bg"
-                                    value="{{ $certificate->cert_bg ?? '#FFEFBC' }}">
+                                    value="@if ( count($certificate) === 1 ){{$certificate[0]->cert_bg}}@else #FFEFBC @endif"
+                                >
                             </div>
 
                             {{-- Certificate text color --}}
@@ -232,7 +233,8 @@
                                     type="color"
                                     name="cert_text_color"
                                     id="cert_text_color"
-                                    value="{{ $certificate->cert_text_color ?? '#000000' }}">
+                                    value="@if ( count($certificate) === 1 ){{$certificate[0]->cert_text_color}}@else #000000 @endif"
+                                >
                             </div>
 
                             {{-- Footer text color --}}
@@ -242,7 +244,8 @@
                                     type="color"
                                     name="footer_text_color"
                                     id="footer_text_color"
-                                    value="{{ $certificate->footer_text_color ?? '#000000' }}">
+                                    value="@if ( count($certificate) === 1 ){{$certificate[0]->footer_text_color}}@else #000000 @endif"
+                                >
                             </div>
 
                             <hr>
@@ -254,7 +257,8 @@
                                     type="color"
                                     name="cert_border_out_color"
                                     id="cert_border_out_color"
-                                    value="{{ $certificate->cert_border_out_color ?? '#000000' }}">
+                                    value="@if ( count($certificate) === 1 ){{$certificate[0]->cert_border_out_color}}@else #000000 @endif"
+                                >
                             </div>
 
                             {{-- Outer border radius --}}
@@ -266,7 +270,8 @@
                                     id="cert_border_out_radius"
                                     min="0"
                                     max="10"
-                                    value="{{ $certificate->cert_border_out_radius ?? '0' }}">
+                                    value="@if ( count($certificate) === 1 ){{$certificate[0]->cert_border_out_radius}}@else 0 @endif"
+                                >
                                 px
                             </div>
 
@@ -279,7 +284,8 @@
                                     id="cert_border_out_thickness"
                                     min="0"
                                     max="10"
-                                    value="{{ $certificate->cert_border_out_thickness ?? '1' }}">
+                                    value="@if ( count($certificate) === 1 ){{$certificate[0]->cert_border_out_thickness}}@else 1 @endif"
+                                >
                                 px
                             </div>
 
@@ -287,10 +293,10 @@
                             <div class="form-group">
                                 <label for="cert_border_out_style">Outer border style:</label>
                                 <select name="cert_border_out_style" id="cert_border_out_style">
-                                    <option value="solid" @if( $certificate->cert_border_out_style === 'solid' ) selected @endif>Solid line</option>
-                                    <option value="dashed" @if( $certificate->cert_border_out_style === 'dashed' ) selected @endif>Dashed line</option>
-                                    <option value="dotted" @if( $certificate->cert_border_out_style === 'dotted' ) selected @endif>Dotted line</option>
-                                    <option value="double" @if( $certificate->cert_border_out_style === 'double' ) selected @endif>Double line</option>
+                                    <option value="solid"  @if( count ( $certificate ) === 1 && $certificate[0]->cert_border_out_style === 'solid' ) selected @endif>Solid line</option>
+                                    <option value="dashed" @if( count ( $certificate ) === 1 && $certificate[0]->cert_border_out_style === 'dashed' ) selected @endif>Dashed line</option>
+                                    <option value="dotted" @if( count ( $certificate ) === 1 && $certificate[0]->cert_border_out_style === 'dotted' ) selected @endif>Dotted line</option>
+                                    <option value="double" @if( count ( $certificate ) === 1 && $certificate[0]->cert_border_out_style === 'double' ) selected @endif>Double line</option>
                                 </select>
                             </div>
 
@@ -301,7 +307,8 @@
                                     type="color"
                                     name="cert_border_in_color"
                                     id="cert_border_in_color"
-                                    value="{{ $certificate->cert_border_in_color ?? '#000000' }}">
+                                    value="@if ( count($certificate) === 1 ){{$certificate[0]->cert_border_in_color}}@else #000000 @endif"
+                                >
                             </div>
 
                             {{-- Inner border radius --}}
@@ -313,7 +320,8 @@
                                     id="cert_border_in_radius"
                                     min="0"
                                     max="10"
-                                    value="{{ $certificate->cert_border_in_radius ?? '0'}}">
+                                    value="@if ( count($certificate) === 1 ){{$certificate[0]->cert_border_in_radius}}@else 0 @endif"
+                                >
                                 px
                             </div>
 
@@ -326,7 +334,8 @@
                                     id="cert_border_in_thickness"
                                     min="0"
                                     max="10"
-                                    value="{{ $certificate->cert_border_in_thickness ?? '1' }}">
+                                    value="@if ( count($certificate) === 1 ){{$certificate[0]->cert_border_in_thickness}}@else 1 @endif"
+                                >
                                 px
                             </div>
 
@@ -334,10 +343,10 @@
                             <div class="form-group">
                                 <label for="cert_border_in_style">Inner border style:</label>
                                 <select name="cert_border_in_style" id="cert_border_in_style">
-                                    <option value="solid" @if( $certificate->cert_border_in_style === 'solid' )  selected @endif >Solid line</option>
-                                    <option value="dashed" @if( $certificate->cert_border_in_style === 'dashed' )  selected @endif >Dashed line</option>
-                                    <option value="dotted" @if( $certificate->cert_border_in_style === 'dotted' )  selected @endif >Dotted line</option>
-                                    <option value="double" @if( $certificate->cert_border_in_style === 'double' )  selected @endif >Double line</option>
+                                    <option value="solid"  @if( count ( $certificate ) === 1 && $certificate[0]->cert_border_in_style === 'solid' )  selected @endif >Solid line</option>
+                                    <option value="dashed" @if( count ( $certificate ) === 1 && $certificate[0]->cert_border_in_style === 'dashed' )  selected @endif >Dashed line</option>
+                                    <option value="dotted" @if( count ( $certificate ) === 1 && $certificate[0]->cert_border_in_style === 'dotted' )  selected @endif >Dotted line</option>
+                                    <option value="double" @if( count ( $certificate ) === 1 && $certificate[0]->cert_border_in_style === 'double' )  selected @endif >Double line</option>
                                 </select>
                             </div>
 
