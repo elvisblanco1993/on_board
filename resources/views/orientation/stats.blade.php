@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container">
         <div class="row my-4 d-flex justify-content-center">
 
             @include('layouts.sidebar')

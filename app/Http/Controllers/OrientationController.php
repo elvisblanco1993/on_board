@@ -238,9 +238,12 @@ class OrientationController extends Controller
              * Check if the current section is not complete, and if a previous section exists on this orientation.
              * This helps identify whether this is the first slide or not
              **/
-            if (is_null($completedAt) && $prev !== $current) {
-                // Mark the previous section as complete.
-                $user->sections()->where('section_id', $prev)->update(['completed_at' => now()]);
+            if (is_null($completedAt)) {
+
+                if ( ! is_null( $prev ) && $prev !== $current) {
+                    $user->sections()->where('section_id', $prev)->update(['completed_at' => now()]);
+                }
+
             }
 
             if (request()->method() == "GET") {

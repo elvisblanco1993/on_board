@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
+    <div class="container">
 
         @auth
             <a class="navbar-brand" href="{{ url('/dashboard') }}">

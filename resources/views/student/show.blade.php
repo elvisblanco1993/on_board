@@ -2,12 +2,18 @@
 
 @section('content')
 
+        <style>
+            body{
+                background-image: url('/storage/images/{{ $orientation->background }}');
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+        </style>
+
         {{-- Student Dashboard --}}
         <div
             class="container"
-            {{-- Load background image loaded by administrator --}}
-            style="background-image: url('storage/images/{{ $orientation->background }}'); background-size: cover; background-repeat: no-repeat;">
-
+        >
             <div class="row align-items-center d-flex justify-content-center m-0" style="height:100vh">
                 <div class="col-md-5 text-right">
                     <img class="img-responsive"
@@ -24,7 +30,7 @@
                         {{ $orientation->description }}
                     </p>
 
-                    @if ($orientation->sections->first()->id !== $start_at)
+                    @if ($orientation->sections->first()->id !== (integer)$start_at)
 
                         <form action="/player/{{ $orientation->id }}/section/{{ $start_at }}" method="post">
                             @csrf

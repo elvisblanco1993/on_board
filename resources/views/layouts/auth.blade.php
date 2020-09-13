@@ -7,8 +7,6 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -21,6 +19,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/orientation.css') }}" rel="stylesheet">
 
+    <link rel="shortcut icon" href="{{ url('/storage/images/logo.png') }}" type="image/x-icon">
+
+    <title>{{ config('app.name', 'ON_BOARD') }}</title>
 </head>
 <body>
     <div id="app">
@@ -30,8 +31,5 @@
             @yield('content')
         </main>
     </div>
-    {{-- <nav class="navbar fixed-bottom py-0 justify-content-center">
-        <small class="text-muted">Powered by {{ config('app.name') }}</small>
-    </nav> --}}
 </body>
 </html>

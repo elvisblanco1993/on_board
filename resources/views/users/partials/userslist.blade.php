@@ -24,7 +24,7 @@
         <div class="row">
             @if ($users->count())
                 @foreach ($users as $user)
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <a href="{{ url('/users/' . $user->id) }}" class="custom-card">
                             <div class="card user-card">
                                 <div class="card-body">
@@ -34,12 +34,12 @@
                                                 src="{{ url('/storage/images/' . $user->avatar) }}"
                                                 alt="{{$user->name}}"
                                                 class="avatar rounded-circle mr-3"
-                                                width="96"
-                                                height="96">
+                                                width="48"
+                                                height="48">
                                         @endif
                                         <div class="media-body align-self-center">
-                                            <h5 class="mt-0 text-dark">{{$user->name}}</h5>
-                                            <p class="text-muted mb-0">{{$user->email}}</p>
+                                            <p class="lead my-0 text-dark">{{$user->name}}</p>
+                                            <small class="text-muted mb-0">{{$user->email}}</small>
                                         </div>
                                     </div>
                                 </div>

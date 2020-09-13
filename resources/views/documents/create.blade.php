@@ -3,7 +3,7 @@
 @section('content')
 
     @if ($role->contains('admin'))
-        <div class="container-fluid">
+        <div class="container">
             <div class="row mt-4">
                 @include('layouts.sidebar')
 

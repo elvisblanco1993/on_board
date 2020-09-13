@@ -1,5 +1,6 @@
-<div class="col-md-10">
-    <div class="card my-5">
+<div class="col-md-12">
+    <div class="card">
+
         <div class="card-body">
             <div class="row">
                 @if ( !is_null( $section->body ) )
@@ -7,6 +8,7 @@
                         {!! $section->body !!}
                     </div>
                 @endif
+
                 <div class="col">
                     <div class="embed-responsive embed-responsive-16by9">
                         <video
@@ -19,6 +21,7 @@
                 </div>
             </div>
         </div>
+
         <div class="card-footer d-flex justify-content-between">
             @if ( $prev !== $current )
 

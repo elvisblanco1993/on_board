@@ -8,8 +8,8 @@
         background-repeat: no-repeat;
     }
 </style>
-<div class="container-fluid" style="margin-top: 2%">
-    <div class="row d-flex justify-content-center">
+<div class="container" style="margin-top: 2%; margin-bottom: 2%">
+    <div class="row d-flex">
 
         @if ($section->types[0]->name == 'text')
 

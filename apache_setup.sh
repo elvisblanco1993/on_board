@@ -1,5 +1,5 @@
 #!/bin/sh
-sudo apt install php libapache2-mod-php php-mbstring php-xmlrpc php-soap php-gd php-xml php-cli php-zip php-bcmath php-tokenizer php-json php-pear apache2 composer npm mysql-server mysql-client php-mysql phpmyadmin supervisor redis php-redis;
+sudo apt install git nano php libapache2-mod-php php-mbstring php-xmlrpc php-soap php-gd php-xml php-cli php-zip php-bcmath php-tokenizer php-json php-pear apache2 composer npm mysql-server mysql-client php-mysql phpmyadmin supervisor redis php-redis;
 
 sudo nano /etc/apache2/apache2.conf;
 sudo rm /etc/apache2/sites-enabled/000-default.conf;
@@ -8,16 +8,16 @@ sudo nano /etc/apache2/sites-enabled/onboard-website.conf;
 # <VirtualHost *:80>
 #    ServerName nboard.app
 #    ServerAdmin support@registrac.page
-#    DocumentRoot /home/website/web/public
+#    DocumentRoot /home/elvis/Projects/NBOARD/on_board/public
 
-#    <Directory /home/website/web>
+#    <Directory /home/elvis/Projects/NBOARD/on_board>
 #        AllowOverride All
 #    </Directory>
 #    ErrorLog ${APACHE_LOG_DIR}/error.log
 #    CustomLog ${APACHE_LOG_DIR}/access.log combined
 # </VirtualHost>
 
-sudo chgrp -R www-data .
+sudo chgrp -R www-data . ;
 sudo chown -R $USER:www-data storage;
 sudo chown -R $USER:www-data bootstrap/cache;
 chmod -R 775 ./storage;
@@ -34,8 +34,9 @@ sudo mysql -u root -p;
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '!@9ijnbhu8@!';
 GRANT ALL PRIVILEGES ON *.* to 'root'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
-CREATE DATABASE odb;
+CREATE DATABASE nboard;
 sudo service mysql restart;
+
 # Add database connection settings on .env
 # Configure email and other settings on .env
 
