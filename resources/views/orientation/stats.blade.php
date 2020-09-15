@@ -41,18 +41,21 @@
 
                                 <tr>
                                     <td>
-                                        <div class="media">
-                                            <div class="media-body">
-                                                <p class="my-0">{{ $student->name }}</p>
-                                                <a href="http://" class="small">{{ $student->email }}</a>
+                                        <a href="{{ url('/users/' . $student->id) }}">
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <p class="my-0">{{ $student->name }}</p>
+                                                    {{ $student->email }}
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </td>
                                     <td align="right" class="align-middle">
                                         @if ($student->pivot->completed_at)
-                                            <span class="badge badge-success">
+                                            <span class="bg-success rounded-lg p-1">
                                                 <i class="fas fa-check-circle"></i>
-                                                {{ $student->pivot->completed_at }}
+                                                Completed on:
+                                                {{ date('M d, Y', strtotime($student->pivot->completed_at)) }}
                                             </span>
                                         @else
 

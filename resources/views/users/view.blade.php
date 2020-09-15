@@ -85,8 +85,10 @@
                                                                     {{$orientation->name}}
 
                                                                     @if ( ! is_null( $orientation->pivot->completed_at ) )
-                                                                        <span class="badge badge-success">
-                                                                            {{ $orientation->pivot->completed_at }}
+                                                                        <span class="bg-success p-1 rounded-lg">
+                                                                            <i class="fas fa-check-circle"></i>
+                                                                            Completed on:
+                                                                            {{ date('M d, Y', strtotime($orientation->pivot->completed_at)) }}
                                                                         </span>
                                                                     @else
                                                                         <i class="fas fa-spinner fa-pulse" title="Orientation still in progress or not started."></i>
@@ -109,24 +111,24 @@
                                                     </h5>
                                                     <ul class="list-group">
 
-                                                        @if ( count($documents) > 0 )
-                                                            @foreach ($documents as $document)
-                                                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                                    {{$document->name}}
+                                                        @forelse ($documents as $document)
+                                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                {{$document->name}}
 
-                                                                    @if ( ! is_null( $document->pivot->signed_at ) )
-                                                                        <a
-                                                                            class="text-danger"
-                                                                            title="View / download signed document."
-                                                                            href="{{ url('document/view/' . $document->id . '/signed-by/' . $user->id) }}">
-                                                                            <i class="fas fa-file-pdf"></i>
-                                                                        </a>
-                                                                    @else
-                                                                        <i class="fas fa-spinner fa-pulse" title="Pending signature."></i>
-                                                                    @endif
-                                                                </li>
-                                                            @endforeach
-                                                        @endif
+                                                                @if ( ! is_null( $document->pivot->signed_at ) )
+                                                                    <a
+                                                                        class="text-danger"
+                                                                        title="View / download signed document."
+                                                                        href="{{ url('document/view/' . $document->id . '/signed-by/' . $user->id) }}">
+                                                                        <i class="fas fa-file-pdf"></i>
+                                                                    </a>
+                                                                @else
+                                                                    <i class="fas fa-spinner fa-pulse" title="Pending signature."></i>
+                                                                @endif
+                                                            </li>
+                                                        @empty
+                                                        <p class="alert alert-info">There are no documents available for this user.</p>
+                                                        @endforelse
 
                                                     </ul>
                                                 </div>
