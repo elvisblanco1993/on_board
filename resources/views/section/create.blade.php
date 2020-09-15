@@ -35,7 +35,7 @@
                                             @endforeach
                                         </select>
                                         <div class="input-group-append">
-                                            <button class="btn btn-sm btn-outline-primary" type="submit">
+                                            <button class="btn btn-sm btn-outline-primary input-group-btn-right" type="submit">
                                                 Select
                                             </button>
                                         </div>

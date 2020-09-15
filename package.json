@@ -24,6 +24,10 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.14.0",
-        "tinymce": "^5.4.2"
+        "plyr": "^3.6.2",
+        "tinymce": "^5.4.2",
+        "video.js": "^7.8.4",
+        "videojs-youtube": "^2.6.1",
+        "videojs7-vimeo": "^2.0.3"
     }
 }

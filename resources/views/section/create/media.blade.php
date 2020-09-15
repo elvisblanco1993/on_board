@@ -6,7 +6,7 @@
         <input type="hidden" name="orientation" value="{{ $orientation->id }}">
 
         <div class="form-group">
-            <label for="heading">Video Title <span class="text-danger">*</span></label>
+            <label for="heading">Title <span class="text-danger">*</span></label>
             <input
                 type="text"
                 name="name"
@@ -20,13 +20,33 @@
             @endif
         </div>
         <div class="form-group">
-            <label for="url">Upload video<span class="text-danger">*</span></label>
-            <div class="input-group">
-                <div class="custom-file">
-                    <input name="video" type="file" class="custom-file-input {{$errors->has('video') ? 'is-invalid' : ''}}" id="videoUload" aria-describedby="video">
-                    <label class="custom-file-label" for="videoUload">Choose video</label>
+            <label for="url">URL<span class="text-danger">*</span></label>
+            <div class="form-row">
+                <div class="col">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Provider</span>
+                        </div>
+                        <select class="custom-select {{$errors->has('video') ? 'is-invalid' : ''}}" name="provider">
+                            <option value="youtube"><i class="fab fa-vimeo"></i>Youtube</option>
+                            <option value="vimeo">Vimeo</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Video</span>
+                        </div>
+                        <input class="form-control {{$errors->has('video') ? 'is-invalid' : ''}}" type="url" name="video" id="url">
+                    </div>
+                    <small class="form-text text-muted">Accepts complete video url.</small>
                 </div>
             </div>
+            @if ($errors->has('provider'))
+                <p class="text-danger">{{$errors->first('provider')}}</p>
+            @endif
             @if ($errors->has('video'))
                 <p class="text-danger">{{$errors->first('video')}}</p>
             @endif

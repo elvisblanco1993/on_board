@@ -12,4 +12,8 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .copy('node_modules/video.js/dist/video.js', 'public/js')
+    .copy('node_modules/videojs-youtube/dist/Youtube.js', 'public/js')
+    .copy('node_modules/video.js/dist/video-js.css', 'public/css')
+    .copy('node_modules/videojs7-vimeo/dist/videojs-vimeo.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');

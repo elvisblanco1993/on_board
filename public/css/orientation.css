@@ -14,14 +14,6 @@ body {
     background-color: #802e9d;
 }
 
-.form-control,
-.btn,
-.card,
-.modal-content,
-.alert {
-    border-radius: .6rem !important;
-}
-
 .card {
     border: 1px solid #eeeded;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.027) !important;

@@ -61,12 +61,7 @@ class SectionController extends Controller
 
         $section = new Section($this->validateSection());
 
-        // Store the video
-        if ($section->video) {
-            $section->video->store('videos', 'public');
-            $section->video = $section->video->hashName();
-            $section->body = request('body');
-        }
+        $section->body = request('body');
 
         $section->save();
 
@@ -104,19 +99,6 @@ class SectionController extends Controller
         $section->video = request('video');
         $section->body = request('body');
 
-        if ($section->video) {
-            if ($section->video !== $section->getOriginal('video')) {
-                // Delete old video and upload new one
-                $original_video = $section->getOriginal('video');
-                Storage::disk('public')->delete('videos/' . $original_video);
-            }
-
-            $section->video->store('videos', 'public');
-            $section->video = $section->video->hashName();
-        } else {
-            $section->video = $section->getOriginal('video');
-        }
-
         $section->update();
 
         return redirect(route('dashboard'))->with('message', 'Section successfully updated!');
@@ -129,11 +111,6 @@ class SectionController extends Controller
     public function destroy(Section $section)
     {
         $orientation = $section->orientation[0]->id;
-
-        //  Delete video file if applicable
-        if ($section->video) {
-            Storage::disk('public')->delete('videos/' . $section->video);
-        }
 
         //  Delete record from DB
         DB::table('sections')->delete($section->id);
@@ -156,7 +133,8 @@ class SectionController extends Controller
             case '2':
                 $validateSection = request()->validate([
                     'name' => 'required',
-                    'video' => 'required|mimes:m4v,mp4,webm',
+                    'provider' => 'required',
+                    'video' => 'required|active_url',
                 ]);
                 break;
             case '3':

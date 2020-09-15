@@ -18,6 +18,7 @@ class CreateSectionsTable extends Migration
             $table->string('name');
             $table->string('label')->nullable();
             $table->longText('body')->nullable();
+            $table->string('provider')->nullable();
             $table->string('video')->nullable();
             $table->timestamps();
         });
