@@ -142,7 +142,7 @@ Route::get('section/create/{orientation_id}', 'SectionController@create')->name(
  /**
  * Invite users
  */
-Route::get('users/invite', 'UserController@invite')->middleware('auth');
+Route::get('users/invite', 'UserController@invite')->name('users.invite')->middleware('auth');
 
 /**
  * Process the invitation
@@ -231,12 +231,12 @@ Route::get('documents', 'DocumentController@index')->name('documents')->middlewa
 /**
  * Create a document
  */
-Route::get('documents/new', 'DocumentController@create')->middleware('auth');
+Route::get('documents/new', 'DocumentController@create')->name('document.create')->middleware('auth');
 
 /**
  * Edit a document
  */
-Route::get('documents/{document}/edit', 'DocumentController@edit')->middleware('auth');
+Route::get('documents/{document}/edit', 'DocumentController@edit')->name('document.edit')->middleware('auth');
 
 /**
  * Update a document

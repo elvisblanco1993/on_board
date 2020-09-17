@@ -40,5 +40,4 @@ sudo service mysql restart;
 # Add database connection settings on .env
 # Configure email and other settings on .env
 
-php artisan migrate;
-php artisan db:seed;
+php artisan migrate --seed;
