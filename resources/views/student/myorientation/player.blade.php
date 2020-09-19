@@ -8,26 +8,30 @@
         background-repeat: no-repeat;
     }
 </style>
-<div class="container" style="margin-top: 2%; margin-bottom: 2%">
-    <div class="row d-flex">
+<div class="container" >
+    <div class="row">
 
-        @if ($section->types[0]->name == 'text')
+        <div class="col-md-12 py-5">
 
-            @include('student.myorientation.text')
+            @if ($section->types[0]->name == 'text')
 
-        @endif
+                @include('student.myorientation.text')
 
-        @if ($section->types[0]->name == 'media')
+            @endif
 
-            @include('student.myorientation.media')
+            @if ($section->types[0]->name == 'media')
 
-        @endif
+                @include('student.myorientation.media')
 
-        @if ($section->types[0]->name == 'assessment')
+            @endif
 
-            @include('student.myorientation.assessment')
+            @if ($section->types[0]->name == 'assessment')
 
-        @endif
+                @include('student.myorientation.assessment')
+
+            @endif
+
+        </div>
 
     </div>
 </div>

@@ -1,79 +1,77 @@
-<div class="col-md-12">
-    <div class="card my-5">
-        <div class="card-body">
-            <div class="row">
+<div class="card my-5">
+    <div class="card-body">
+        <div class="row">
 
-                <div class="col-md-8">
+            <div class="col-md-8">
 
-                    <span class="mb-2">
-                        {!! $section->body !!}
-                    </span>
+                <span class="mb-2">
+                    {!! $section->body !!}
+                </span>
 
-                    @if ( ! is_null( $possibleAnswers ) )
+                @if ( ! is_null( $possibleAnswers ) )
 
-                        @foreach ($possibleAnswers as $answer)
+                    @foreach ($possibleAnswers as $answer)
 
-                            {{-- Give me the options --}}
-                            <div class="form-group">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="answer{{ $answer->id }}" name="answer" class="custom-control-input" value="{{ $answer->is_correct }}">
-                                    <label class="custom-control-label" for="answer{{ $answer->id }}">{{ $answer->answer }}</label>
-                                </div>
+                        {{-- Give me the options --}}
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="answer{{ $answer->id }}" name="answer" class="custom-control-input" value="{{ $answer->is_correct }}">
+                                <label class="custom-control-label" for="answer{{ $answer->id }}">{{ $answer->answer }}</label>
                             </div>
+                        </div>
 
-                        @endforeach
+                    @endforeach
 
-                    @endif
+                @endif
 
-                    <div class="form-group">
-                        <button class="btn {{ $orientation->btn_secondary ?? 'btn-success' }}" id="checkAnswer" onclick="validate()">
-                            Check my answer
-                        </button>
-                    </div>
-
-                    {{-- Javascript feedback --}}
-                    <span id="feedback"></span>
-
+                <div class="form-group">
+                    <button class="btn {{ $orientation->btn_secondary ?? 'btn-success' }}" id="checkAnswer" onclick="validate()">
+                        Check my answer
+                    </button>
                 </div>
 
-                <div class="col-md-4">
-                    {{-- Put image here --}}
-                </div>
+                {{-- Javascript feedback --}}
+                <span id="feedback"></span>
 
+            </div>
+
+            <div class="col-md-4">
+                {{-- Put image here --}}
             </div>
 
         </div>
 
-        <div class="card-footer d-flex justify-content-between">
-            @if ( !is_null($prev) && $prev !== $current )
+    </div>
 
-                <form action="/player/{{ $orientation->id }}/section/{{ $prev }}" method="post">
-                    @csrf
-                    @method('PUT')
-                    <button class="btn {{ $orientation->btn_secondary ?? 'btn-light' }}" id="prev"><i class="fas fa-chevron-left"></i> PREVIOUS</button>
-                </form>
+    <div class="card-footer d-flex justify-content-between">
+        @if ( !is_null($prev) && $prev !== $current )
 
-            @else
-            <button class="btn {{ $orientation->btn_secondary ?? 'btn-light' }}" disabled><i class="fas fa-chevron-left"></i> PREVIOUS</button>
+            <form action="/player/{{ $orientation->id }}/section/{{ $prev }}" method="post">
+                @csrf
+                @method('PUT')
+                <button class="btn {{ $orientation->btn_secondary ?? 'btn-light' }}" id="prev"><i class="fas fa-chevron-left"></i> PREVIOUS</button>
+            </form>
 
-            @endif
-            @if ( ! is_null( $next ) && $next !== $current )
+        @else
+        <button class="btn {{ $orientation->btn_secondary ?? 'btn-light' }}" disabled><i class="fas fa-chevron-left"></i> PREVIOUS</button>
 
-                <form action="/player/{{ $orientation->id }}/section/{{ $next }}" method="post">
-                    @csrf
-                    @method('PUT')
-                    <button class="btn {{ $orientation->btn_primary ?? 'btn-primary' }}" id="next" disabled>NEXT <i class="fas fa-chevron-right"></i></button>
-                </form>
+        @endif
+        @if ( ! is_null( $next ) && $next !== $current )
 
-            @else
-                <form action="/player/{{ $orientation->id }}/finish/{{ $current }}" method="post">
-                    @csrf
-                    @method('PUT')
-                    {{-- Completes the section and the orientation --}}
-                    <button class="btn {{ $orientation->btn_primary ?? 'btn-success' }}" id="next" disabled>FINISH <i class="far fa-check-circle"></i></button>
-                </form>
-            @endif
-        </div>
+            <form action="/player/{{ $orientation->id }}/section/{{ $next }}" method="post">
+                @csrf
+                @method('PUT')
+                <button class="btn {{ $orientation->btn_primary ?? 'btn-primary' }}" id="next" disabled>NEXT <i class="fas fa-chevron-right"></i></button>
+            </form>
+
+        @else
+            <form action="/player/{{ $orientation->id }}/finish/{{ $current }}" method="post">
+                @csrf
+                @method('PUT')
+                {{-- Completes the section and the orientation --}}
+                <button class="btn {{ $orientation->btn_primary ?? 'btn-success' }}" id="next" disabled>FINISH <i class="far fa-check-circle"></i></button>
+            </form>
+        @endif
     </div>
 </div>
 
