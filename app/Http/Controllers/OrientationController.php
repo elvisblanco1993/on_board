@@ -35,8 +35,6 @@ class OrientationController extends Controller
         $role = User::find(Auth::user()->id)->getRoles();
         $certificate = $orientation->certificate ?? null;
 
-        // dd($certificate);
-
         return view('orientation.edit', [
             'orientation' => $orientation,
             'role' => $role,
@@ -105,7 +103,8 @@ class OrientationController extends Controller
 
         $orientation->save();
 
-        return redirect(route('dashboard'))->with('message', 'Orientation ' . $orientation->name . ' was successfully created.');
+        return redirect('/orientation/'.$orientation->id)
+            ->with('message', 'Orientation ' . $orientation->name . ' was successfully created.');
     }
 
     /**
