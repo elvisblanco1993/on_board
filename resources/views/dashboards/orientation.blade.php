@@ -114,7 +114,8 @@
 
                         </div>
 
-                        @if ($role->contains('admin'))
+                        @if ($role->contains('admin') && count($orientation->sections) === 0)
+
                             <div class="card-footer">
                                 <button
                                 type="button"
@@ -125,38 +126,35 @@
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </button>
                             </div>
-                        @endif
-                    </div>
 
-
-                    @if ($role->contains('admin'))
-
-                        <div class="modal fade" id="del{{ $orientation->id }}" tabindex="-1" role="dialog" aria-labelledby="del{{ $orientation->id }}Label" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="del{{ $orientation->id }}Label">Deleting {{ $orientation->name }}</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p class="lead">Are you sure you want to delete this orientation?</p>
-                                        <p>All data related to this orientation will be lost.</p>
-                                        <form action="/orientation/{{ $orientation->id }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <div class="text-right">
-                                                <button type="button" class="btn btn-light mr-2" data-dismiss="modal">Cancel</button>
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </div>
-                                        </form>
+                            <div class="modal fade" id="del{{ $orientation->id }}" tabindex="-1" role="dialog" aria-labelledby="del{{ $orientation->id }}Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="del{{ $orientation->id }}Label">Deleting {{ $orientation->name }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="lead">Are you sure you want to delete this orientation?</p>
+                                            <p>All data related to this orientation will be lost.</p>
+                                            <form action="/orientation/{{ $orientation->id }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <div class="text-right">
+                                                    <button type="button" class="btn btn-light mr-2" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                    @endif
+                        @endif
+
+                    </div>
 
                     @include('dashboards.include.modals')
                 </div>
