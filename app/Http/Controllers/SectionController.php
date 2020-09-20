@@ -110,12 +110,17 @@ class SectionController extends Controller
      */
     public function destroy(Section $section)
     {
-        $orientation = $section->orientation[0]->id;
+        $orientation = Orientation::find($section->orientation[0]->id);
+
+        // Check that the Orientation doesn't have any sections.
+        if ($orientation->users->count() > 0) {
+            return redirect('/orientation/' . $orientation->id)->with('errMessage', 'This section cannot be deleted because there are students currently enrolled.');
+        }
 
         //  Delete record from DB
         DB::table('sections')->delete($section->id);
 
-        return redirect('/orientation/' . $orientation)->with('message', 'Section deleted!');
+        return redirect('/orientation/' . $orientation->id)->with('message', 'Section deleted!');
     }
 
     /**
