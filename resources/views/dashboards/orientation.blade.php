@@ -67,10 +67,36 @@
                                                         <i class="fas fa-edit"></i>
                                                     </button>
 
-                                                    @if ($role->contains('admin'))
+                                                    @if ($role->contains('admin') && count($orientation->users) === 0)
+
                                                         <button type="button" class="btn btn-link text-danger" data-toggle="modal" data-target="#del{{ $section->id }}">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
+
+                                                        <div class="modal fade" id="del{{ $section->id }}" tabindex="-1" role="dialog" aria-labelledby="del{{ $section->id }}Label" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="del{{ $section->id }}Label">Deleting {{ $section->name }}</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p class="lead">Are you sure you want to delete this section?</p>
+                                                                    <p>All data related to this section will be lost.</p>
+                                                                    <form action="/section/{{ $section->id }}/delete" method="POST">
+                                                                        @csrf
+                                                                        <div class="text-right">
+                                                                            <button type="button" class="btn btn-light mr-2" data-dismiss="modal">Cancel</button>
+                                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+
                                                     @endif
 
                                                 </div>
@@ -78,33 +104,8 @@
                                             </td>
                                         </tr>
 
-                                        @if ($role->contains('admin'))
-                                            <div class="modal fade" id="del{{ $section->id }}" tabindex="-1" role="dialog" aria-labelledby="del{{ $section->id }}Label" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="del{{ $section->id }}Label">Deleting {{ $section->name }}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p class="lead">Are you sure you want to delete this section?</p>
-                                                        <p>All data related to this section will be lost.</p>
-                                                        <form action="/section/{{ $section->id }}/delete" method="POST">
-                                                            @csrf
-                                                            <div class="text-right">
-                                                                <button type="button" class="btn btn-light mr-2" data-dismiss="modal">Cancel</button>
-                                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
-                                        @endif
-
                                     @empty
+
                                     <p class="text-center">Click <strong>Add section</strong> to get started.</p>
 
                                     @endforelse

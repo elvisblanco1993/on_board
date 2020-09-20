@@ -71,7 +71,7 @@
                             @endif
                         </div>
                         <div class="form-group float-right">
-                            <a class="btn btn-light mr-2" href="{{route('dashboard')}}">Discard</a>
+                            <a class="btn btn-light mr-2" href="{{ url()->previous() }}">Discard</a>
                             <button class="btn btn-primary shadow-sm" type="submit"><i class="fas fa-save mr-1"></i>Save</button>
                         </div>
 
