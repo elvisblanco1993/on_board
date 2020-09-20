@@ -82,7 +82,7 @@
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
-                                                                <div class="modal-body">
+                                                                <div class="modal-body text-left">
                                                                     <p class="lead">Are you sure you want to delete this section?</p>
                                                                     <p>All data related to this section will be lost.</p>
                                                                     <form action="/section/{{ $section->id }}/delete" method="POST">
