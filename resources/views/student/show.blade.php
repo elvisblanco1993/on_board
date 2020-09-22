@@ -12,7 +12,7 @@
 
         {{-- Student Dashboard --}}
         <div
-            class="container"
+            class="container-xl"
         >
             <div class="row align-items-center d-flex justify-content-center m-0" style="height:100vh">
                 <div class="col-md-5 text-right">

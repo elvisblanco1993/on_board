@@ -8,7 +8,7 @@
         background-repeat: no-repeat;
     }
 </style>
-<div class="container">
+<div class="container-xl">
     <div class="row d-flex justify-content-center">
 
         @if ($section->types[0]->name == 'text')

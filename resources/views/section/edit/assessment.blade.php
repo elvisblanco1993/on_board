@@ -1,5 +1,5 @@
 @if ($role->contains('admin') || $role->contains('advisor'))
-    <section class="container">
+    <section class="container-xl">
         <form action="/assessment/{{ $section->id }}" method="post">
             @csrf
             @method('PUT')

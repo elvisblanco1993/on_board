@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-xl">
         <div class="row my-4">
 
             @include('layouts.sidebar')

@@ -8,7 +8,7 @@
         background-repeat: no-repeat;
     }
 </style>
-<div class="container">
+<div class="container-xl">
     <div class="row my-4 d-flex justify-content-center">
         <div class="card">
             <div class="card-body">

@@ -37,24 +37,22 @@
             {{-- List the domains in the whitelist --}}
             <div class="col-md 12">
 
-                @if ( count( $whitelist ) > 0 )
+                @forelse ($whitelist as $domain)
 
-                    @foreach ($whitelist as $domain)
+                    <div class="badge badge-light" title="Remove domain from whitelist.">
+                        <form action=" {{ url('settings') . '/domain/' . $domain->id }} " method="post">
+                            {{ $domain->domain }}
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-link p-0 pb-1 text-danger" type="submit">
+                                &times;
+                            </button>
+                        </form>
+                    </div>
 
-                        <div class="badge badge-secondary my-1" title="Remove domain from whitelist.">
-                            <form action=" {{ url('settings') . '/domain/' . $domain->id }} " method="post">
-                                {{ $domain->domain }}
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn p-0 text-danger" type="submit">
-                                    &times;
-                                </button>
-                            </form>
-                        </div>
+                @empty
 
-                    @endforeach
-
-                @endif
+                @endforelse
             </div>
 
         </div>

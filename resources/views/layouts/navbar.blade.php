@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
-    <div class="container">
+<nav class="navbar navbar-expand-md navbar-light bg-white border-bottom py-0">
+    <div class="container-xl">
 
         @auth
             <a class="navbar-brand" href="{{ url('/dashboard') }}">
                 <img
                     src="{{ url('/storage/images/logo.png') }}"
-                    height="30"
+                    height="36"
                     loading="lazy"
                     alt="{{ config('app.name') }}">
             </a>
@@ -13,7 +13,7 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img
                     src="{{ url('/storage/images/logo.png') }}"
-                    height="30"
+                    height="36"
                     loading="lazy"
                     alt="{{ config('app.name') }}">
             </a>

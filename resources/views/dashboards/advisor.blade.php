@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @if ($role->contains('advisor'))
-        <div class="container">
+        <div class="container-xl">
             <div class="row my-4">
 
                 @include('layouts.sidebar')

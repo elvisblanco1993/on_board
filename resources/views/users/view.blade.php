@@ -2,7 +2,7 @@
 
 @section('content')
     @if ($role->contains('admin') || $role->contains('advisor'))
-        <div class="container">
+        <div class="container-xl">
             <div class="row my-4 d-flex justify-content-center"">
 
                 @include('layouts.sidebar')
@@ -36,7 +36,7 @@
                         </div>
                         <div class="card-body">
 
-                            <div class="container">
+                            <div class="container-xl">
                                 <div class="row">
                                     <div class="col">
                                         <div class="mb-4">
@@ -67,7 +67,7 @@
 
                             {{-- User is a Student --}}
                             @if ($user->roles[0]->id == 3)
-                                <div class="container">
+                                <div class="container-xl">
                                     <div class="row">
                                         <div class="col">
                                             {{-- Orientations --}}
