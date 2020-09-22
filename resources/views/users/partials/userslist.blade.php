@@ -24,24 +24,20 @@
         <div class="row">
             @if ($users->count())
                 @foreach ($users as $user)
-                    <div class="col-md-4 mb-4">
-                        <a href="{{ url('/users/' . $user->id) }}" class="custom-card">
-                            <div class="card user-card">
-                                <div class="card-body">
-                                    <div class="media">
-                                        @if ( $user->avatar )
-                                            <img
-                                                src="{{ url('/storage/images/' . $user->avatar) }}"
-                                                alt="{{$user->name}}"
-                                                class="avatar rounded-circle mr-3"
-                                                width="48"
-                                                height="48">
-                                        @endif
-                                        <div class="media-body align-self-center">
-                                            <p class="lead my-0 text-dark">{{$user->name}}</p>
-                                            <small class="text-muted mb-0">{{$user->email}}</small>
-                                        </div>
-                                    </div>
+                    <div class="col-md-12 my-2">
+                        <a href="{{ url('/users/' . $user->id) }}">
+                            <div class="media">
+                                @if ( $user->avatar )
+                                    <img
+                                        src="{{ url('/storage/images/' . $user->avatar) }}"
+                                        alt="{{$user->name}}"
+                                        class="avatar rounded-circle mr-3"
+                                        width="48"
+                                        height="48">
+                                @endif
+                                <div class="media-body align-self-center">
+                                    <p class="lead my-0">{{$user->name}}</p>
+                                    <small class="text-muted mb-0">{{$user->email}}</small>
                                 </div>
                             </div>
                         </a>
