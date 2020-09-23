@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-xl">
-        <div class="row my-4">
+        <div class="row my-4 d-flex justify-content-center">
 
             @include('layouts.sidebar')
 
@@ -368,9 +368,10 @@
                     </div>
                 </div>
             </div>
+
+            @include('layouts.alert')
+
         </div>
-
-
     </div>
 
 @endsection

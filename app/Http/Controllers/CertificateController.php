@@ -89,7 +89,7 @@ class CertificateController extends Controller
                 'footer_text_color' => $footer_text_color
             ]);
 
-            return redirect(route('dashboard'))->with('message', 'Certificate successfully updated.');
+            return redirect('/orientation/' . $orientation->id . '/edit')->with('message', 'Certificate successfully updated.');
         }
     }
 
@@ -118,6 +118,5 @@ class CertificateController extends Controller
             ->setPaper('letter', "$certificate->paper_orientation")
             ->setOptions(['debugLayoutLines' => true]);
         return $pdf->download();
-
     }
 }

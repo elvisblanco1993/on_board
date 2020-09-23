@@ -24,11 +24,6 @@ class Orientation extends Model
         return $this->hasMany(Question::class);
     }
 
-    public function documents()
-    {
-        return $this->belongsToMany(Document::class)->withTimestamps();
-    }
-
     /**
      * Append a section to an Orientation
      */

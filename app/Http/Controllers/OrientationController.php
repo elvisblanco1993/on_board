@@ -86,7 +86,7 @@ class OrientationController extends Controller
             'textbox_bg' => request('textbox_bg'),
         ]);
 
-        return redirect(route('dashboard'))->with('message', 'Orientation successfully updated.');
+        return redirect('/orientation/' . $orientation->id . '/edit')->with('message', 'Orientation successfully updated.');
     }
 
     public function store()

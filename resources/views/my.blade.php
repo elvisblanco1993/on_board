@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container-xl">
-        <div class="row my-4">
+        <div class="row my-4 d-flex justify-content-center">
 
             @include('layouts.sidebar')
 
@@ -32,12 +32,13 @@
                                 <div class="media-body">
                                     <p class="lead">{{ $user->name }}</p>
                                     <p>{{ $user->email }}</p>
-                                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#chPassword"><i class="fa fa-key" aria-hidden="true"></i> Reset password</button>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#chPassword"><i class="fa fa-key" aria-hidden="true"></i> Reset password</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -79,7 +80,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
     {{-- Password reset --}}
     <div class="modal fade" id="chPassword" tabindex="-1" role="dialog" aria-labelledby="chPasswordLabel" aria-hidden="true">
@@ -104,7 +105,7 @@
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="" autocomplete="new-password">
                         </div>
                         <div class="form-group float-right">
-                            <button class="btn btn-sm btn-primary" type="submit">
+                            <button class="btn btn-primary" type="submit">
                                 <i class="fa fa-key" aria-hidden="true"></i>
                                 Reset password
                             </button>

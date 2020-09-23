@@ -26,8 +26,8 @@ chmod -R 775 bootstrap/cache;
 sudo a2enmod rewrite;
 sudo systemctl restart apache2;
 
-composer install;
-npm install;
+composer install && composer update;
+npm install && npm update;
 
 # Create the database
 sudo mysql -u root -p;

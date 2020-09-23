@@ -102,37 +102,6 @@
                                                 </div>
                                             </div>
 
-                                            {{-- Documents --}}
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="text-capitalize mb-3">
-                                                        <i class="fas fa-file-pdf mr-1 text-danger"></i>
-                                                        Documents
-                                                    </h5>
-                                                    <ul class="list-group">
-
-                                                        @forelse ($documents as $document)
-                                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                                {{$document->name}}
-
-                                                                @if ( ! is_null( $document->pivot->signed_at ) )
-                                                                    <a
-                                                                        class="text-danger"
-                                                                        title="View / download signed document."
-                                                                        href="{{ url('document/view/' . $document->id . '/signed-by/' . $user->id) }}">
-                                                                        <i class="fas fa-file-pdf"></i>
-                                                                    </a>
-                                                                @else
-                                                                    <i class="fas fa-spinner fa-pulse" title="Pending signature."></i>
-                                                                @endif
-                                                            </li>
-                                                        @empty
-                                                        <p class="alert alert-info">There are no documents available for this user.</p>
-                                                        @endforelse
-
-                                                    </ul>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

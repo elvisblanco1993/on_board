@@ -4,6 +4,7 @@ use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\BackendUserController;
 use App\Http\Controllers\OrientationController;
 use App\Http\Controllers\UserController;
+use App\Signature;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -276,5 +277,9 @@ Route::put('documents/{document}/attach', 'DocumentController@attachToOrientatio
  */
 Route::put('documents/{document}/sign', 'DocumentController@sign')->middleware('auth');
 
+/**
+ * Create digital signature (with signature pad)
+ */
+Route::post('/signature', 'SignatureController@store');
 
 

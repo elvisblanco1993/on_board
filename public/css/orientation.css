@@ -62,15 +62,15 @@ a {
     padding: 1.2rem;
     border-radius: .4rem;
     bottom: 2rem;
-    right: 2rem;
+    /* right: 2rem; */
     position: fixed;
     animation-name: snackbar;
-    animation-duration: 6s;
+    animation-duration: 4s;
     opacity: 0%;
 }
 
 .snackbar-success {
-    background-color: #68d391;
+    background-color: #77ffab;
     color: #22543d;
 }
 
@@ -88,7 +88,7 @@ a {
         opacity: 100%;
     }
 
-    60% {
+    90% {
         opacity: 100%;
     }
 

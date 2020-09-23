@@ -109,18 +109,5 @@
 
     </div>
 
-
-    {{-- Show Documents --}}
-    @if ( count( $documents ) > 0 )
-    <div class="row mt-5">
-        <div class="col-md-12">
-            <h4>
-                Documents
-            </h4>
-        </div>
-        @include('student.documents.index')
-    </div>
-    @endif
-
 </div>
 @endsection
