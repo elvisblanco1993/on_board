@@ -66,7 +66,7 @@ class AssessmentController extends Controller
             }
         }
 
-        return redirect('/orientation/'. request('orientation'))->with('message', 'Section created!');
+        return redirect('/orientation/'. request('orientation'))->with('message', 'Section successfully created.');
     }
 
     /**

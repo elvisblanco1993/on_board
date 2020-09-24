@@ -1,5 +1,0 @@
-#!/bin/sh
-openssl req -x509 -nodes -days 365000 -newkey rsa:1024 -keyout ./storage/certificates/tcpdf.crt -out ./storage/certificates/tcpdf.crt;
-chmod 0444 ./storage/certificates/tcpdf.crt;
-echo "Certificate successfully created!";
-echo "You can now view the generated certificate in /storage/certificates/tcpdf.cert";

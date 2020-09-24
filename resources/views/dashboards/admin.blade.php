@@ -2,7 +2,7 @@
 @section('content')
     @if ($role->contains('admin'))
         <div class="container-xl">
-            <div class="row my-4 ">
+            <div class="row my-4 d-flex justify-content-center">
 
                 @include('layouts.sidebar')
 
@@ -22,23 +22,16 @@
                         </div>
                         <div class="card-body">
 
-                            @if (session('message'))
-                                <div class="alert alert-success" role="alert">
-                                    <strong>{{ session('message') }}</strong>
-                                </div>
-                            @endif
-                            @if (session('errMessage'))
-                                <div class="alert alert-warning" role="alert">
-                                    <strong>{{ session('errMessage') }}</strong>
-                                </div>
-                            @endif
-
                             @include('dashboards.include.orientations')
+
                         </div>
                     </div>
 
                     @include('dashboards.include.modals')
                 </div>
+
+                @include('layouts.alert')
+
             </div>
         </div>
     @endif

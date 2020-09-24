@@ -1,9 +1,4 @@
 @if($role->contains('admin') || $role->contains('advisor'))
-    @error('enroll')
-        <div class="alert alert-danger" role="alert">
-            {{ $message }}
-        </div>
-    @enderror
 
     <table class="table table-hover table-borderless">
         <tbody>
@@ -11,6 +6,7 @@
             <tr>
                 <td class="align-middle">
                     <a type="button" class="text-capitalize" href="/orientation/{{ $orientation->id }}">
+                        <i class="fas fa-chalkboard-teacher mr-2"></i>
                         {{ $orientation->name }}
                     </a>
                 </td>

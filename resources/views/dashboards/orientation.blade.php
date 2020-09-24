@@ -8,17 +8,6 @@
 
                 <div class="col-md-10">
 
-                    @if (session('message'))
-                        <div class="alert alert-success" role="alert">
-                            <strong>{{ session('message') }}</strong>
-                        </div>
-                    @endif
-                    @if (session('errMessage'))
-                        <div class="alert alert-warning" role="alert">
-                            <strong>{{ session('errMessage') }}</strong>
-                        </div>
-                    @endif
-
                     <div class="card">
 
                         <div class="card-header">
@@ -159,6 +148,9 @@
 
                     @include('dashboards.include.modals')
                 </div>
+
+                @include('layouts.alert')
+
             </div>
         </div>
     @endif

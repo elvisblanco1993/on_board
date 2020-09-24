@@ -71,7 +71,7 @@ class SectionController extends Controller
         // Attach to the orientation
         $section->orientation()->attach(request('orientation'));
 
-        return redirect('/orientation/'. request('orientation'))->with('message', 'Section created!');
+        return redirect('/orientation/'. request('orientation'))->with('message', 'Section successfully created.');
     }
 
     /**
@@ -101,7 +101,9 @@ class SectionController extends Controller
 
         $section->update();
 
-        return redirect(route('dashboard'))->with('message', 'Section successfully updated!');
+        $orientation = Orientation::find($section->orientation[0]->id);
+
+        return redirect('/orientation/' . $orientation->id)->with('message', 'Section successfully updated.');
     }
 
     /**

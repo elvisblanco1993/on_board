@@ -175,12 +175,12 @@ class OrientationController extends Controller
     {
         // Check that the Orientation doesn't have any sections.
         if ($orientation->sections->count() > 0) {
-            return redirect(route('dashboard'))->with('errMessage', 'This orientation could not be deleted because it contains sections. Please delete all sections and try again.');
+            return redirect('/orientation/' . $orientation->id)->with('errMessage', 'This orientation could not be deleted. Please delete all sections and try again.');
         }
 
         // Check for enrolled students.
         if ($orientation->users->count() > 0) {
-            return redirect(route('dashboard'))->with('errMessage', 'This orientation could not be deleted because there are students currently enrolled. Please unenroll any students before you delete this orientation.');
+            return redirect('/orientation/' . $orientation->id)->with('errMessage', 'This orientation cannot be deleted. Please unenroll students and try again.');
         }
 
         DB::table('orientations')->delete($orientation->id);
