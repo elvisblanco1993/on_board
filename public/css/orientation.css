@@ -31,6 +31,10 @@ body {
     border-radius: 0 0 .6rem .6rem !important;
 }
 
+.nb-course-card-graph {
+    height: 8rem !important;
+}
+
 .user-card:hover {
     box-shadow: 0 0.125rem 0.25rem rgba(213, 224, 255, 0.527) !important;
 }

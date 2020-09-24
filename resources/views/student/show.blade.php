@@ -15,13 +15,13 @@
             class="container-xl"
         >
             <div class="row align-items-center d-flex justify-content-center m-0" style="height:100vh">
-                <div class="col-md-5 text-right">
+                <div class="col-md-5 text-center">
                     <img class="img-responsive"
                         src="{{ url('/storage/images/logo.png') }}"
                         alt="{{ $orientation->name }}"
                         width="60%">
                 </div>
-                <div class="col-md-5 p-4 rounded-lg" style="background: {{ $orientation->textbox_bg }}">
+                <div class="col-md-5 p-4 rounded-lg text-center" style="background: {{ $orientation->textbox_bg }}">
                     <h1 class="font-weight-bolder">
                         {{ $orientation->name }}
                     </h1>

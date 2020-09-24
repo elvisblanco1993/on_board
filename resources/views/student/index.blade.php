@@ -36,10 +36,12 @@
                 @isset($orientation->users->find($user->id)->pivot->completed_at)
                     <div class="col-md-3">
 
-                        <div class="card p-0">
+                        <div class="card p-0 my-2">
                             <span
-                                class="rounded-top"
-                                style="height: 8rem; background-color: {{ $cardBg }}">
+                                class="rounded-top nb-course-card-graph"
+                                style="@if( ! is_null ($orientation->background) ) background-image: url('/storage/images/{{ $orientation->background }}'); background-size: cover; background-repeat: no-repeat;] @else background: #5fdbba @endif"
+                            >
+
                             </span>
                             <div class="card-body">
                                 <h5 class="card-title">{{ $orientation->name }}</h5>
@@ -74,13 +76,13 @@
 
                     <div class="col-md-3">
 
-                        <div class="card p-0">
-                            <span
-                                style="height: 5rem; background-color: {{ $cardBg }}; border-radius: .6rem .6rem 0 0">
+                        <div class="card p-0 my-2">
+                            <span class="rounded-top nb-course-card-graph"
+                                style="@if( ! is_null ($orientation->background) ) background-image: url('/storage/images/{{ $orientation->background }}'); background-size: cover; background-repeat: no-repeat;] @else background: #5fdbba @endif"
+                            >
                             </span>
                             <div class="card-body">
                                 <h5 class="card-title">{{ $orientation->name }}</h5>
-                                <p class="card-text text-truncate">{{ $orientation->description }}</p>
                                 <a
                                     @if ( count($orientation->sections) > 0 )
                                         class="btn btn-sm btn-primary"
