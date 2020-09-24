@@ -62,12 +62,10 @@ class BackendUserController extends Controller
     public function view(User $user)
     {
         $orientations = $user->orientations ?? null;
-        $documents = $user->documents ?? null;
 
         return view('users.view', [
             'user' => $user,
             'orientations' => $orientations,
-            'documents' => $documents,
             'appRoles' => Role::get(),
             'role' => User::find(Auth::user()->id)->getRoles(),
         ]);

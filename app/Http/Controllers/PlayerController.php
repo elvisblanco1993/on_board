@@ -21,7 +21,6 @@ class PlayerController extends Controller
     {
         $user = User::find(Auth::user()->id);
         $role = $user->getRoles();
-        $documents = User::find(Auth::user()->id)->documents;
         $first = DB::table('section_user')->where('user_id', $user->id)->first();
 
         // Has Orientation?
@@ -32,8 +31,6 @@ class PlayerController extends Controller
 
             $tempUsr->sections()->sync($toSync, false);
 
-            // Assign documents directly from the orientation
-            $tempUsr->documents()->sync($orientation->documents, false);
 
             // Let's re-check for sections now
             $first = DB::table('section_user')->where('user_id', $user->id)->first();
@@ -53,7 +50,6 @@ class PlayerController extends Controller
                         'completed' => true,
                         'orientationName' => $orientation->name,
                         'orientationBg' => $orientation->background,
-                        'documents' => $documents,
                     ]);
 
                 }
@@ -67,7 +63,6 @@ class PlayerController extends Controller
                             'role' => $role,
                             'start_at' => $first->section_id,
                             'orientation' => $orientation,
-                            'documents' => $documents,
                         ]);
 
                     } else {
@@ -77,7 +72,6 @@ class PlayerController extends Controller
                             'role' => $role,
                             'start_at' => $start_at->section_id,
                             'orientation' => $orientation,
-                            'documents' => $documents,
                         ]);
                     }
                 }
@@ -94,7 +88,6 @@ class PlayerController extends Controller
                         'role' => $role,
                         'start_at' => $first->section_id,
                         'orientation' => $orientation,
-                        'documents' => $documents,
                     ]);
 
                 } else {
@@ -106,7 +99,6 @@ class PlayerController extends Controller
                 'user' => $user,
                 'role' => $role,
                 'completed' => false,
-                'documents' => $documents,
             ]);
 
         } else {
@@ -114,7 +106,6 @@ class PlayerController extends Controller
                 'user' => $user,
                 'role' => $role,
                 'completed' => false,
-                'documents' => $documents,
             ]);
         }
     }
